@@ -1,0 +1,47 @@
+#!/bin/bash -
+#===============================================================================
+#
+#          FILE: modsr.sh
+#
+#         USAGE: ./modsr.sh
+#
+#   DESCRIPTION:
+#
+#       OPTIONS: ---
+#  REQUIREMENTS: ---
+#          BUGS: ---
+#         NOTES: ---
+#        AUTHOR: YOUR NAME (),
+#  ORGANIZATION:
+#       CREATED: 06/30/2020 03:15:23 PM
+#      REVISION:  ---
+#===============================================================================
+
+
+_fzmod () {
+  _fzdef
+LSPRE="echo {} | awk '{print $1}'"
+FCOM1="$LSPRE | xargs modinfo"
+FCOM2="$LSPRE | xargs man"
+if test -n "$FCOM2"; then
+	FINCOM="{ $FCOM1 ; $FCOM2; }"; else
+	FINCOM="{ $FCOM1; }"
+fi
+lsmod | fzf --preview="cnat; ($FINCOM) 2>/dev/null | colorize" \
+	--preview-window=hidden  \
+	--bind="ctrl-p:toggle-preview" \
+	--bind="ctrl-h:execute(echo {} | xargs -ro frg)" \
+	--bind="ctrl-v:execute(modinfo {})" \
+	--bind="f9:reload(fdmod)" \
+  --bind="f8:toggle-sort"
+}
+_fmodclean () {
+  unset FCOM1
+  unset FCOM2
+  unset LSPRE
+  unset FINCOM
+}
+
+_fzmod
+_fzdef
+_fmodclean

@@ -1,0 +1,53 @@
+#!/bin/bash
+set pipefail
+set errexit
+
+declare darkgrey
+declare white
+declare blue
+declare cyan
+declare red
+declare lightc
+declare green
+declare magenta
+declare nc
+darkgrey="$(tput bold ; tput setaf 0)"
+white="$(tput bold ; tput setaf 7)"
+blue="$(tput bold; tput setaf 4)"
+cyan="$(tput bold; tput setaf 6)"
+red="$(tput bold; tput setaf 2)"
+lightc="$(tput bold; tput setaf 3)"
+green="$(tput bold; tput setaf 5)"
+magenta="$(tput bold; tput setaf 9)"
+nc="$(tput sgr0)"
+
+_fdmod () {
+fd -t f . \
+  -e ko.xz /lib/modules/"$(uname -r)" \
+-x echo '{/}'  | \
+sed -e 's/\.ko\.xz//' | \
+sort -u || exit 2
+}
+
+_fzfmod () {
+fzf --preview='modinfo {}' || exit 3
+}
+
+_matchcolor () {
+  local blue
+  local red
+    for line in $(_fdmod); do
+     if [[ -n "$(lsmod | rg "$line")" ]];
+		then
+      echo "$magenta $line $nc" 2>/dev/null;
+    else
+      echo "$cyan $line $nc" \
+      2>/dev/null
+      fi
+    done || exit 1
+}
+
+
+_matchcolor | fzf --preview="modinfo '{}'"
+unset line
+exit 0

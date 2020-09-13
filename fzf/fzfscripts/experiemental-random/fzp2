@@ -1,0 +1,3 @@
+#!/bin/bash
+__com1 | rg "${1:-'.'}" | fzf --preview='moreman {} |
+  rg --only-matching -e {q}' --phony --bind='f8:reload:__com1 | rg {q}'

@@ -1,0 +1,54 @@
+#!/bin/bash -
+#===============================================================================
+#
+#          FILE: test.sh
+#
+#         USAGE: ./test.sh
+#
+#   DESCRIPTION:
+#
+#       OPTIONS: ---
+#  REQUIREMENTS: ---
+#          BUGS: ---
+#         NOTES: ---
+#        AUTHOR: Rayiik (), dsimon_aas@hotmail.com
+#  ORGANIZATION:
+#       CREATED: 08/03/2020 03:34:53 PM
+#      REVISION:  ---
+#===============================================================================
+
+
+declare gvar=''
+declare Fvar=''
+if [[ -n "$1" ]];
+  then
+  Fvar="$1";
+else
+  Fvar='.'
+fi
+if [[ -n "$2" ]];
+  then
+   gvar="$2";
+  else
+    gvar='.'
+fi
+qstring='__coms | rg "$Fvar"'
+grep_flag_available="rg '{q}' ./ --color=always --colors=match:fg:12 --no-filename"
+_man_andor="(
+tldr {} && cheat {} && moreman {}
+) ||
+  (
+tldr {} && moreman {}
+) ||
+  (
+cheat {} && moreman {}
+) ||
+  (
+  moreman {}
+)"
+
+"${qstring}" | rg "$gvar" --no-filename | fzf --phony \
+  --preview="$_man_andor | $grep_flag_available"
+unset gvar
+unset Fvar
+

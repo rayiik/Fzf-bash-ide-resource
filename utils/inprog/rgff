@@ -1,0 +1,36 @@
+#!/bin/bash -
+#===============================================================================
+#
+#          FILE: test.sh
+#
+#         USAGE: ./test.sh
+#
+#   DESCRIPTION:
+#
+#       OPTIONS: ---
+#  REQUIREMENTS: ---
+#          BUGS: ---
+#         NOTES: ---
+#        AUTHOR: Rayiik (), dsimon_aas@hotmail.com
+#  ORGANIZATION:
+#       CREATED: 08/03/2020 03:34:53 PM
+#      REVISION:  ---
+#===============================================================================
+
+
+declare gvar=''
+declare Fvar=''
+if [[ -z "$1" ]]; then
+  Fvar='.'; else
+  Fvar="$1"
+fi
+if [[ -z "$2" ]]; then
+  gvar='.'; else
+  gvar="$2"
+fi
+grep_flag_available="rg '{q}' ./ --color=always --colors=match:fg:12 --no-filename"
+fd -uu -t f "$Fvar" | rg "$gvar" --no-filename | fzf --phony \
+  --preview="nvimpager -c {} | $grep_flag_available"
+unset gvar
+unset Fvar
+

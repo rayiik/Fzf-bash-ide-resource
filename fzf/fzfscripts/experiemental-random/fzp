@@ -1,0 +1,136 @@
+#!/bin/bash -
+#===============================================================================
+#
+#          FILE: test.sh
+#
+#         USAGE: ./test.sh
+#
+#   DESCRIPTION:
+#
+#       OPTIONS: ---
+#  REQUIREMENTS: ---
+#          BUGS: ---
+#         NOTES: ---
+#        AUTHOR: Rayiik (), dsimon_aas@hotmail.com
+#  ORGANIZATION:
+#       CREATED: 08/03/2020 03:34:53 PM
+#      REVISION:  ---
+#===============================================================================
+
+declare gvar=''
+declare Fvar=''
+declare tvar=''
+declare _rg_flag_=''
+declare _query_file=''
+declare _query_dir=''
+_rg_flag_="rg $tvar ./ --color=always --colors=match:fg:12 --no-filename"
+_query_file="fd -uu -t f $Fvar"
+_query_dir="fd -uu -d d $Fvar"
+
+################################################################################
+#-------------------------------------------------------------------------------
+#
+#-------------------------------------------------------------------------------
+_fflag () {
+if [[ "$1" = '-q' ]]; then
+  tvar='{q}'
+FZF_DEFAULT_OPTS+=" --phony"; else
+  _1arg "$@"
+fi
+if [[ "$1" = '-d' ]];
+  then
+    _main_query="${_query_dir}"
+FZF_DEFAULT_OPTS+=" --phony"
+tvar='{q}'
+    _1arg "$@"
+    shift 1;
+ elif [[ "$1" = '-c' ]];
+  then
+    _main_query="$(__com1)"
+FZF_DEFAULT_OPTS+=" --phony"
+tvar='{q}'
+    _1arg "$@"
+    shift 1;
+  else
+    _main_query="${_query_file}"
+fi
+if [[ -n "$tvar" ]]; then
+  __alt_func; else
+__main_func
+fi
+}
+
+_parm_set () {
+ if [[ -n "$3" ]]; then
+Fvar="$2" && gvar="$3"; elif
+[[ -z "$2" ]]; then
+  Fvar='.' && gvar='.'; else
+  Fvar="$2"&& gvar='.'
+fi
+}
+#-------------------------------------------------------------------------------
+#
+#-------------------------------------------------------------------------------
+_1arg () {
+  if [[ -z "$1" ]]; then
+   Fvar='.'; else
+   Fvar="$1"
+  fi
+
+  if [[ -z "$2" ]]; then
+   tvar='.'; else
+   tvar="$2"
+  fi
+
+  if [[ "$#" -lt 3 ]]; then
+    tvar="$2" && gvar='.'; else
+    gvar="$3" && tvar="$2"
+  fi
+}
+
+#-------------------------------------------------------------------------------
+#
+#-------------------------------------------------------------------------------
+#
+#echo "$1 $2 $3"
+#if [[ "$1" = '-q' ]]; then
+#  _fflag "$@"; else
+#  _1arg "$@"
+#fi
+#-------------------------------------------------------------------------------
+#
+#-------------------------------------------------------------------------------
+
+
+#-------------------------------------------------------------------------------
+#
+#-------------------------------------------------------------------------------
+
+__main_func()
+    {
+"${_main_query}" | rg "${gvar}" --no-filename | \
+  fzf --header "
+search: $Fvar;
+contains: $gvar;
+preview highlight: $tvar" \
+  --preview="nvimpager {} | $_rg_flag_"
+    }
+
+__alt_func ()
+{
+__com1 | rg "$gvar" --no-filename -c 1 --only-matching \
+| fzf --preview="moreman {} | $_rg_flag_"
+
+}
+  __clean ()
+   {
+unset _query_file
+unset tvar
+unset _rg_flag_
+unset _query_dir
+unset _main_query
+unset gvar
+unset Fvar
+  }
+_fflag "$@"
+__clean

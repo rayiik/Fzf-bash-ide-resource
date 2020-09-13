@@ -1,0 +1,14 @@
+#!/bin/bash
+if [[ -z "$1" ]]; then
+fd -uu . -t f /usr/share/terminfo \
+  | awk -F / '{print  $NF}' \
+  | sort -u \
+  | fzf --bind="alt-p:execute(echo $(infocmp {} -1) >> $HOME/tmp/{}.tmp)" \
+  --preview-window 'right:100:wrap' \
+  --preview='cnat; infocmp {} -l  | colorize; fline; ascii -1 | colorize'; else
+  term="$(infocmp "$1" -1 | fzf | vipe)"
+fi
+
+READLINE_LINE="${READLINE_LINE:+"$term"}"
+printf '%s' "$READLINE_LINE"
+unset term

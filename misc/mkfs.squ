@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Sanity
+if [ $# -ne 2 ]; then
+	echo "invoke: mksquashfs.sh  SOURCE_DIRECTORY BACKUP_ARCHIVE_DIRECTORY"
+	exit 1
+fi
+echo -ne "/n/nHave you fsck'd? "
+read
+# Backup
+mksquashfs \
+	"$1" "$2/$(date +%Y%m%d_%a).sfs" \
+	-comp gzip \
+	-xattrs \
+	-progress \
+	-mem 5G \
+	-wildcards \
+	-e \
+	boot \
+	boot/efi \
+	boot/grub \
+	boot/vmlinuz-linux \
+	boot/initramfs-linux"*".img
+

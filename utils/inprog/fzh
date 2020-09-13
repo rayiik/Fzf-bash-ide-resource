@@ -1,0 +1,36 @@
+#!/bin/bash
+#===============================================================================
+#
+#          FILE: test2.sh
+#
+#         USAGE: ./test2.sh
+#
+#   DESCRIPTION:
+#
+#       OPTIONS: ---
+#  REQUIREMENTS: ---
+#          BUGS: ---
+#         NOTES: ---
+#        AUTHOR: Rayiik (), dsimon_aas@hotmail.com
+#  ORGANIZATION:
+#       CREATED: 08/01/2020 07:31:38 PM
+#      REVISION:  ---
+#===============================================================================
+
+
+Fvar="$1"
+echo "$1"
+
+_fzhelp() {
+  __fhelpcmd="($Fvar --help || moremanman $Fvar)"
+   "$__fhelpcmd" | up |\
+rg --ignore-case \
+-e '-[-a-z]*' \
+-e '-[-a-z][a-z]*' \
+--only-matching \
+--no-filename | \
+sort -u | \
+sed -e 's/^-$//' |
+sed -e 's/^--$//'
+}
+_fzhelp "$1"

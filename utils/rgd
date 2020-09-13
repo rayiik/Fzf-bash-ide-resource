@@ -1,0 +1,24 @@
+#!/bin/bash
+#
+
+
+_rgdir () {
+rg -uu \
+  --files \
+  --null \
+ --colors 'line:fg:6'  \
+--colors 'match:fg:9' \
+--colors 'path:fg:7' | \
+xargs -r0 dirname |
+sort -u
+}
+
+_rgc () {
+  _rgdir |\
+    fzf --preview="fd -uu -t d -d 1 . {} | cut -d / $" \
+    --bind="alt-v:reload(rg -uu . {} | fzf --sync --preview=nvimpager {})" \
+    --bind='ctrl-v:execute(neovim {})' \
+    --sync
+  }
+
+_rgdir

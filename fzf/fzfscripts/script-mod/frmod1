@@ -1,0 +1,147 @@
+#!/bin/bash -
+#===============================================================================
+#
+#          FILE: frmod.sh
+#
+#         USAGE: ./frmod.sh
+#
+#   DESCRIPTION:
+#
+#       OPTIONS: ---
+#  REQUIREMENTS: ---
+#          BUGS: ---
+#         NOTES: ---
+#        AUTHOR: Rayiik (), dsimon_aas@hotmail.com
+#  ORGANIZATION:
+#       CREATED: 07/27/2020 01:14:37 PM
+#      REVISION:  ---
+#===============================================================================
+
+declare _tmpmodpath="$HOME/tmp/mod.tmp"
+declare -A colors
+colors[red]=$(tput setaf 1)
+colors[green]=$(tput setaf 2)
+colors[blue]=$(tput setaf 4)
+colors[reset]=$(tput sgr0)
+declare -A __var
+declare Mman
+	echo "$1"
+	tfile="$1"
+if [ -n "$tfile" ]; then
+	 Fvar="$tfile"; else
+   Fvar='.'
+fi
+   __var="$(lsmod | awk '{print $1}')"
+   MMa
+#
+#color() {
+#  local c
+#  c="$"
+#  shift
+#  printf '%s' "${colors[$c]}"
+#  printf '%s\n' "$@"
+#  printf '%s' "${colors[reset]}"
+#}
+
+
+
+_rgmod () {
+    rg --no-messages \
+       --files \
+       -N /lib/modules/"$(uname -r)" \
+       --no-max-columns-preview \
+       --no-line-number \
+       --no-heading \
+       --color always \
+       --trim
+}
+
+_rmodsearch () {
+  rg \
+    \.ko\.xz \
+    --no-heading \
+    --no-filename \
+    --no-line-number
+}
+#color() {
+#  local c
+#  c="$1"
+#  shift
+#  printf '%s' "${colors[$c]}"
+#  printf '%s\n' "$@"
+#  printf '%s' "${colors[reset]}"
+#}
+#_colorize () {
+#  local c
+#  for list[@] in $(cat "$_tmpmodpath"); do
+#    if [[ "$list[@]" == "$(lsmod | rg $list[@])" ]]; then
+#      color blue "$(echo "$list")"; else
+#    color green "$(echo "$list")"
+#fi
+#done
+#color reset
+#}
+
+#arch() {
+#  local search packages
+#  search='pacman'
+#  [[ -n "$1" ]] && search=$(select_from 'pacaur --rebuild' 'trizen' 'yaourt' 'packer' 'apacman' 'pacman')
+#  packages=$(fzf --preview="$search -Si {2}" \
+#    < <( $search -Ss "$1" |
+#      gawk '{
+#        getline descr;
+#        sub(/ */,"", descr);
+#        repo = blue "[" gensub(/\/.*/, "", 1) "]" reset;
+#        name = green gensub(/.*\//, "", 1, $1) reset;
+#        info = gensub(/[^ ]* /, "", 1);
+#        print repo, name, info, descr;
+#      }' blue="$c_blue" green="$c_green" reset="$c_reset"
+#    ) | cut -d' ' -f2)
+#  [[ "$search" = "pacman" ]] && search="sudo pacman"
+#  install "$search -S" <<< "$packages"
+#}
+
+#_rgmain () {
+#  fzvar "$1"
+#  _rtarg \
+#    | _rgmodfilt \
+#    | fzf \
+#    --preview='modinfo "$(rg {} $_tmpmodpath)' \
+#    --preview-window=hidden
+#  }
+#_rgmain "$1"
+#unset Fvar
+
+_modfile () {
+  fzvar
+lsmod | awk '{print $1}' > "$HOME"/tmp/lsmodpattern
+  cat "$Mman"
+ sed 's/^/'-e'\ /' | sed 's/$/*/' | \
+ cat > "$Mman"
+   }
+ mcom () {
+ locale Mmod
+ _modfile
+    _rgmod \
+        | awk -F '/' '{print $NF}' \
+        | _rmodsearch \
+        | awk -F '.' '{print $1}' \
+        | sort -u | \
+"parallel rg  --no-filename --passthru" <<_EF_
+${__var[*]}
+_EF_
+}
+testcom () {
+_modfile | fzf --reverse  --preview-window right:68:wrap \
+        --preview="{ cnat; fline ; modinfo {} | colorize; }" \
+        --height=100
+unset _tmpmodpath
+}
+
+#        | rg   -e "$(rg {} "$HOME/tmp/lmp.tmp" --passthru --no-filename)" \
+_rhl () {
+  lsmod | \
+    awk '{print $1}' | \
+    sed 's/^.*.$/'-e'\ '\''*&*'\''/'
+  }
+mcom "$@" | testcom

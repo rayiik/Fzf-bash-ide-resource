@@ -1,0 +1,23 @@
+#!/bin/bash
+##===============================================================================
+#                                o  o  _
+#                 ))_) ___ __ _ _  _  )L,
+#                ((`\ ((_( \(/'(( (( ((\
+#                           ))
+#          FILE: cnat
+#         USAGE: ./cnat
+#   DESCRIPTION: call nametag
+#       OPTIONS: ---
+#  REQUIREMENTS: archey3
+#         NOTES: ---
+#        AUTHOR: Rayiik (), dsimon_aas@hotmail.com
+#  ORGANIZATION:
+#       CREATED: 08/17/2020 01:48:05 AM
+#      REVISION:  ---
+#===============================================================================
+
+_cnat () {
+cat /home/rayiik/fzfscripts/utilscripts/nonexecutable/namet | colorize
+}
+_cnat
+fline

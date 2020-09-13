@@ -1,0 +1,94 @@
+#!/bin/bash -
+#===============================================================================
+#
+#          FILE: rgf.sh
+#
+#         USAGE: ./rgf.sh
+#
+#   DESCRIPTION:
+#
+#       OPTIONS: ---
+#  REQUIREMENTS: ---
+#          BUGS: ---
+#         NOTES: ---
+#        AUTHOR: Rayiik (), dsimon_aas@hotmail.com
+#  ORGANIZATION:
+#       CREATED: 07/18/2020 03:05:03 PM
+#      REVISION:  ---
+#===============================================================================
+set -e
+set -o pipefail
+
+_rgf () {
+ fzvar "$1"
+  rg -z \
+  -uu \
+  --pretty \
+  --no-line-number \
+  -uu \
+  --files \
+  | rg --no-line-number \
+  "$Fvar"
+}
+
+fzvar () {
+	echo "$1"
+	local tfile="$1"
+if [ -n "$tfile" ]; then
+	 Fvar="$tfile"; else
+	 Fvar='.'
+fi
+}
+_fdf () {
+fdvar "$2"
+fzvar "$1"
+declare flag=''
+local Fvar
+local FDvar
+fd -uu \
+  --color always \
+  --exec rg "$flag" --no-filename \
+  --no-line-number "$Fvar"
+}
+fdvar () {
+  echo "$2"
+  local FDvar
+  if [[ "$#" -gt 1 ]]; then
+    FDvar="$2"; else
+    FDvar='.'
+  fi
+  }
+_rgclen () {
+  unset tfile
+  unset Fvar
+  unset FDvar
+}
+_rgf "$1"
+
+#while getopts ":rdfa" opts; do
+#case ${opts} in
+#  r)
+#    _rgf
+#    ;;
+#  f)
+#    if [[ "$opts" = 'r' ]]; then
+#      _rgf | fzf --preview='nvimpager {}'; elif
+#      [[ "$opts" = 'd' ]]; then
+#      flag="--files-with-matches" \
+#      _fdf | fzf --preview='nvimpager {}'
+#    fi
+#    ;;
+#  d)
+#    flag="--files-with-matches"
+#    _fdf
+#    ;;
+#  a)
+#    flag='';
+#    _fdf
+#    ;;
+#  ?)
+#    _fgf
+#    ;;
+#esac
+#done
+_rgclen

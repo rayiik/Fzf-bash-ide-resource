@@ -1,0 +1,44 @@
+SRC="$1"
+DEST="$2"
+for dir in "$SRC"*; do
+	if [ -d "$SRC" ]; then
+		rsync -av --no-d --dry-run  \
+      "$dir" "$DEST" ; fi
+done
+
+for file in "$SRC"; do
+      if [ -f "$SRC" ]; then
+        rsync -av --no-d --dry-run  \
+	"$dir" "$DEST"
+      fi
+    done
+select choice in dir files all quit
+do
+  case $choice in
+    dir)
+        echo "***********************************"
+        rsync -av --no-d "$dir" "$DEST"
+        echo "***********************************"
+        ;;
+  files)
+        echo "***********************************"
+        rsync -av --no-d "$file" "$DEST"
+        echo "***********************************"
+        ;;
+    all)
+        echo "***********************************"
+        rsync -av --no-d "$file" "$DEST" --noxondiem && \
+        rsync -av --no-d "$dir" "$DEST" --noconfirm
+       return 0
+        echo "***********************************"
+        ;;
+   quit)
+        return
+    esac
+  done
+
+
+unset dir
+unset DEST
+unset SRC
+unset choice

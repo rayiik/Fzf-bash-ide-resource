@@ -1,0 +1,5 @@
+#!/bin/bash
+_fline () {
+  printf "%${COLUMNS:-137}s" " "  | tr " " "-"
+}
+echo "$(_fline)" | colorize

@@ -1,0 +1,159 @@
+#!/usr/bin/env bash
+
+declare -r esc=$'\033'
+declare -r c_reset="${esc}[0m"
+declare -r c_red="${esc}[31m"
+declare OPTIND
+declare -a opts=( -\# )
+declare id
+
+usage() {
+  LESS=-FEXR less <<'HELP'
+ix [OPTIONS]
+
+-l             list all pastes, uses fzf for interactive use
+-d [id]        delete the paste at [id]
+-i [id]        replaces the paste with stdin
+-h             print this help
+HELP
+}
+
+err() {
+  printf "${c_red}%s${c_reset}\n" "$@" >&2
+}
+
+die() {
+  err "$@"
+  exit 1
+}
+
+has() {
+  local verbose=0
+  if [[ $1 == '-v' ]]; then
+    verbose=1
+    shift
+  fi
+  for c; do c="${c%% *}"
+    if ! command -v "$c" &> /dev/null; then
+      (( verbose > 0 )) && err "$c not found"
+      return 1
+    fi
+  done
+}
+
+select_from() {
+  local cmd='command -v'
+  for a; do
+    case "$a" in
+      -c) cmd="$2"; shift 2 ;;
+    esac
+  done
+  for c; do
+    if $cmd "${c%% *}" &> /dev/null; then
+      echo "$c"
+      return 0
+    fi
+  done
+  return 1
+}
+
+has_account() {
+  [[ -r ~/.netrc ]] && grep -qF 'ix.io' ~/.netrc
+}
+
+create_account() {
+  echo "It seems you don't have a ~/.netrc with ix.io in it. Let's make one!"
+  read -r -p 'enter a username: ' username
+  read -rs -p 'enter a password (this will be hashed with sha256sum): ' password
+  echo ''
+  password=$(sha256sum <<< "$password")
+  password="${password/%  -}"
+  printf "machine ix.io login %s password %s" "$username" "$password" >> ~/.netrc
+  chmod 600 ~/.netrc
+  if has_account; then
+    echo 'success!'
+  else
+    die 'could not create account!'
+  fi
+}
+
+get_user_name() {
+  awk '"ix.io"==$2{print $4}' ~/.netrc
+}
+
+get_pastes() {
+  curl -s "http://ix.io/user/$1" |
+    grep -A1 -P '\<a href="\/[a-zA-Z0-9]+"\>' |
+    awk -F'--' '
+      BEGIN {FS="<a href=\""}
+      /a href/{ sub(/\">\[r\]<\/a>/, "\t", $2); printf "http://ix.io" $2 }
+      /@/{sub(/^\s+/, "", $0); print}
+    '
+}
+
+list_pastes() {
+  local highlighter
+  highlighter=$(select_from 'highlight -q --force -O ansi' pygmentize cat)
+  url=$(get_pastes "$(get_user_name)" | fzf \
+    --inline-info --cycle \
+    --header='Ctrl-E = edit; Ctrl-V = view; Ctrl-D = delete' \
+    --preview="curl -s '{1}' | ${highlighter}" \
+    --bind 'space:jump' \
+    --bind 'q:abort' \
+    --bind "Ctrl-V:execute:less -R < <(curl -s '{1}' ${highlighter:+ | $highlighter}) > /dev/tty" \
+    --bind 'Ctrl-E:execute:p={1}; edit=$(curl -s "$p" | vipe); ix -i "${p##*/}" <<< "$edit"' \
+    --expect='Ctrl-D')
+  if [[ -n "$url" ]]; then
+    mapfile -t res <<< "$url"
+    if [[ "${res[0]}" = 'Ctrl-D' ]]; then
+      id="${res[1]}"
+      id="${id#*ix.io/}"
+      id="${id%%$'\t'*}"
+      ix -d "$id"
+      list_pastes
+      exit
+    fi
+  fi
+}
+
+has -v curl || die
+
+has_account || create_account
+
+[[ -e ~/.netrc ]] && opts+=( '-n' )
+
+while getopts ":hld:i:n:" x; do
+  case "$x" in
+    h) usage; exit ;;
+    d) curl -s "${opts[@]}" -X DELETE "$OPTARG"; exit ;;
+    l)
+      if [[ -e ~/.netrc ]]; then
+        url=$(list_pastes)
+        [[ -n "$url" ]] && cut -f1 <<< "$url" | tee | xclip
+      else
+        die 'no netrc found'
+      fi
+      exit ;;
+    i) opts+=( -X PUT ); id="$OPTARG" ;;
+    n) opts+=( -F "read:1=$OPTARG" ) ;;
+  esac
+done
+shift $(( OPTIND - 1 ))
+
+if [[ -t 0 ]]; then
+  if [[ -n "$1" ]]; then
+    filename="$1"
+    shift
+    response=$(curl "${opts[@]}" -F f:1=@"$filename" "$@" "ix.io/$id")
+    clipboard=$(select_from 'xclip -r ' 'xsel')
+    if [[ -n "$clipboard" ]]; then
+      tee /dev/tty <<< "$response" | $clipboard
+    else
+      echo "$response"
+    fi
+    exit
+  fi
+  echo "^C to cancel, ^D to send."
+fi
+
+curl "${opts[@]}" -F f:1='<-' "$@" "ix.io/$id"

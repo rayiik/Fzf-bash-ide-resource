@@ -1,0 +1,55 @@
+#!/bin/bash -
+#===============================================================================
+#
+#          FILE: __coms.sh
+#
+#         USAGE: ./__coms.sh
+#
+#   DESCRIPTION:
+#
+#       OPTIONS: ---
+#  REQUIREMENTS: ---
+#          BUGS: ---
+#         NOTES: ---
+#        AUTHOR: Rayiik (), dsimon_aas@hotmail.com
+#  ORGANIZATION:
+#       CREATED: 07/29/2020 08:46:03 PM
+#      REVISION:  ---
+#===============================================================================
+
+if [[ -n "$1" ]]; then
+  Fvar="$1";
+else Fvar='.'
+fi
+
+_coms () {
+  local file dir
+set -f; IFS=:
+for dir in $PATH; do
+  set +f
+  [ -z "$dir" ] && dir="."
+  for file in "$dir"/*; do
+    if [ -x "$file" ] && ! [ -d "$file" ]; then
+	    printf '%s = %s\n' "${file##*/}" "$file"
+    fi
+  done
+done
+unset file dir
+}
+cmmd () {
+	_coms |\
+    awk '{print $1}' | \
+		sort -u | \
+ xargs whatis 2>/dev/null | \
+    rg --no-filename "$Fvar" | \
+		fzf \
+	 --preview="cnat; echo {} | sed -e 's/\s.*//' 2>/dev/null | \
+   xargs -r man 2>/dev/null | rg -e '[A-Z][A-Z].*' \
+   -e '-[a-z A-Z].*' --no-filename 2>/dev/null" \
+	--bind="ctrl-h:execute(echo {+} | sed -e 's/\s.*//' \
+  2>/dev/null | xargs -r man)"
+unset Fvar
+}
+cmmd "$@"
+
+

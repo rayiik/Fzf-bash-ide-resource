@@ -1,0 +1,21 @@
+#!/usr/bin/bash
+###bashcolor
+
+    echo -en "\e]P0000003" #black
+    echo -en "\e]P8DC143C" #crimson
+    echo -en "\e]P1B800D6" #indiannred
+    echo -en "\e]PfFF8c00" #darkorange
+    echo -en "\e]P2228B22" #darkgreen
+    echo -en "\e]P600ff5f" #green
+    echo -en "\e]Pc2e8b57" #palegreen
+    echo -en "\e]Pb00FF80" #hotpink
+    echo -en "\e]P500afff" #darkblue
+    echo -en "\e]Pe8700af" #deeplavender
+    echo -en "\e]P7ff005f" #lavender
+    echo -en "\e]PdFF4500" #redorange
+    echo -en "\e]P31e90FF" #darkcyan
+    echo -en "\e]Pacc3300" #deepmagenta
+    echo -en "\e]P93cb371" #mossgreen
+    echo -en "\e]P4ff00d7" #brightpurple
+    clear #for background artifacting;
+

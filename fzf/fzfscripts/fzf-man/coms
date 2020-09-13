@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+#
+#
+if [[ -n "$1" ]]; then
+  Fvar="$1";
+else Fvar='.'
+fi
+
+fcomclean () {
+unset dir
+unset file
+}
+_coms () {
+case "$PATH" in
+  (*[!:]:) PATH="$PATH:" ;;
+esac
+
+set -f; IFS=:
+for dir in $PATH; do
+  set +f
+  [ -z "$dir" ] && dir="."
+  for file in "$dir"/*; do
+    if [ -x "$file" ] && ! [ -d "$file" ]; then
+	    printf '%s = %s\n' "${file##*/}" "$file"
+    fi
+  done
+done
+}
+
+cmmd () {
+	_coms |\
+    awk '{print $1}' | \
+		sort -u | \
+    rg --no-filename "$Fvar" | \
+		fzf \
+		--bind="ctrl-h:execute:echo {} | xargs -r moreman 2>/dev/null" \
+		--preview="(cnat; moreman {} 2>/dev/null | rg --no-filename --passthru \
+    -e {q} 2>/dev/null)"
+}
+
+cmmd
+fcomclean

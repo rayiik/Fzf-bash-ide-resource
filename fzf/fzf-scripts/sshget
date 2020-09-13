@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+
+declare -r esc=$'\033'
+declare -r c_reset="${esc}[0m"
+declare -r c_red="${esc}[31m"
+
+declare -r fifo='/tmp/sshget.fifo'
+declare -A domains=()
+declare -A paths=()
+declare -a files=()
+
+err() {
+  printf "${c_red}%s${c_reset}\n" "$*" >&2
+}
+
+die() {
+  exit 1
+}
+
+usage() {
+  LESS=-FEXR less <<'HELP'
+sshget <user@host1:/path/to/search ...>
+HELP
+}
+
+has() {
+  local verbose=0
+  if [[ $1 = '-v' ]]; then
+    verbose=1
+    shift
+  fi
+  for c; do c="${c%% *}"
+    if ! command -v "$c" &> /dev/null; then
+      (( verbose > 0 )) && err "$c not found"
+      return 1
+    fi
+  done
+}
+
+has -v fzf rsync || die
+
+cleanup() {
+  [[ -e "$fifo" ]] && rm "$fifo"
+}
+trap cleanup SIGHUP SIGINT SIGTERM
+
+mkfifo "$fifo"
+
+if (( $# < 1 )); then
+  usage
+  die
+fi
+
+for a; do
+  host="${a%:*}"
+  path="${a##*:}"
+  domains+=( ["$a"]="$host" )
+  paths+=( ["$a"]="$path" )
+  shift
+done
+
+for s in "${!domains[@]}"; do
+  ssh "${domains[$s]}" "find ${paths[$s]}" | sed -r "s|^|${domains[$s]}:|" >> "$fifo" &
+done
+
+mapfile -t files < <(fzf -e --inline-info +s --multi --cycle --bind='Ctrl-A:toggle-all,`:jump' < "$fifo")
+
+if (( ${#files[@]} )); then
+  rsync --protect-args -auvzP -e ssh "${files[@]}" .
+fi
+
+cleanup
