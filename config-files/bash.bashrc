@@ -61,7 +61,7 @@ _ete1 () {
     estat="$(_exitstatus)"
   fi
 }
-
+"$
 if [[ "$USER" == 'rayiik' ]]; then
 PS1="\[$col9\]R\[$col11\]A\[$col13\]Y\[$col1\]I\[$col2\]I\[$col8\]K:\[$col12\]\$(date +%d)\[$col13\]-\$(date +%A)-\[$col14\]\$(date +%B)\]
 \[$col2\]:\[$col3\][\@]\[$col4\]<\w>\[$col5\]/\n\[$col6\]:\[$col7\]-->\[$nc\]\${estat}\[$nc\]"
@@ -100,32 +100,29 @@ tput init
 #exports
 #-------------------------------------------------------------------------------
 
-source  '/home/rayiik/coms/scripts/fidt'
-#source '/etc/fzf/assw.sh'
-#source '/home/rayiik/athame/assw'
-export INPUTRC='/home/rayiik/.inputrc'
-export TMP='/home/rayiik/tmp'
-export ATHAME_ENABLED=0
+source  "$HOME/coms/scripts/fidt"
+export INPUTRC="$HOME/.inputrc"
+export TMP="$HOME/tmp"
 export PAGER='nvimpager'
 export MANPAGER='nvimpager'
 export XAUTHORITY="$HOME/.Xauthority"
 export HISTSIZE="10000000000"
-export HISTFILE='/home/rayiik/.bash_history'
+export HISTFILE="$HOME/.bash_history"
 export HISTCONTROL="ignoredups:ignorespaces:erasedups"
 export SYSTEMD_PAGER='nvimpager'
 export HISTIGNORE='ls:ps:history:cd:exit'
 export LD_PRELOAD=""
 
-if [[ -n "$DISPLAY" ]]; then
-export FCEDIT="nvim-qt" \
-export VISUAL="nvim-qt" \
-export EDITOR="nvim-qt"; else
-export FCEDIT="nvim" \
-export VISUAL="nvim" \
-export EDITOR="nvim"
-fi
-export PERL_LOCAL_LIB_ROOT="/home/rayiik/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}";
-export PERL_MB_OPT="--install_base \'/home/rayiik/perl5\'"
+#######if there are conflicting color issues between tui and gui use this flag
+#if [[ -n "$DISPLAY" ]]; then
+#export FCEDIT="nvim-qt" \
+#export VISUAL="nvim-qt" \
+#export EDITOR="nvim-qt"; else
+#export FCEDIT="nvim" \
+#export VISUAL="nvim" \
+#export EDITOR="nvim"
+#fi
+
 export FZF_TMUX=1
 
 
@@ -144,31 +141,7 @@ appendpath () {
     esac
 }
 
-
-
-appendpath '/home/rayiik/.cargo/bin'
-appendpath '/home/rayiik/.gem/ruby/2.7.0/bin'
-appendpath '/home/rayiik/.gem/ruby/2.7.0/gems/rake-13.01/bin'
-appendpath '/home/rayiik/.local/bin'
-appendpath '/home/rayiik/.local/bin'
-appendpath '/home/rayiik/.local/share/nvim/bin'
-appendpath '/home/rayiik/.pyenv/bin'
-appendpath '/home/rayiik/.pyenv/shims'
-appendpath '/home/rayiik/.vim/vim/bin'
-appendpath '/home/rayiik/.vim/vim/bundle/clang_complete/bin'
-appendpath '/home/rayiik/bin'
-appendpath '/home/rayiik/build/opt/bin'
-appendpath '/home/rayiik/fzf/fzf-scripts'
-appendpath '/home/rayiik/fzfscripts/'
-appendpath '/home/rayiik/fzfscripts/cmds'
-appendpath '/home/rayiik/fzfscripts/script-cmd'
-appendpath '/home/rayiik/fzfscripts/script-man'
-appendpath '/home/rayiik/fzfscripts/script-mod'
-appendpath '/home/rayiik/fzfscripts/utilscripts'
-appendpath '/home/rayiik/local/bin'
-appendpath '/home/rayiik/mycroft-core/bin'
-appendpath '/home/rayiik/perl5/bin'
-appendpath '/home/ryaiik/.gem/ruby/2.7.0/bin'
+##add to your path here
 appendpath '/opt/cuda/bin'
 appendpath '/opt/cuda/nvvmx/bin'
 appendpath '/opt/cuda/samples/bin'
@@ -190,40 +163,33 @@ appendpath '/var/lib/flatpak/exports/bin'
 unset appendpath
 
 
-#appendpath '/home/rayiik/.scripts/fzf.f'
-#appendpath '/home/rayiik/bin'
-#appendpath '/home/rayiik/.scripts/func'
-
-
 #-------------------------------------------------------------------------------
 # source files
 #-------------------------------------------------------------------------------
 #
-#if [[ -n "$DISPLAY" ]]; then
-#  source '/home/rayiik/.extratermbash'
-#fi
 
-if test -f '/home/rayiik/.config/user-dirs.dirs'; then
-  . '/home/rayiik/.config/user-dirs.dirs'; else
+
+if test -f "$HOME/.config/user-dirs.dirs"; then
+  . "$HOME/.config/user-dirs.dirs"; else
   echo "$red user-dirs.dirs not found $nc"
 fi
 
-if test -f '/home/rayiik/.config/user-dirs.locale'; then
-  . '/home/rayiik/.config/user-dirs.locale'; else
+if test -f $HOME/.config/user-dirs.locale'; then
+  . $HOMEk/.config/user-dirs.locale'; else
   echo "$red user-dirs.local not found $nc"
 fi
 
 
-if test -f /home/rayiik/fzf/conf/.fzf.bash; then
-  . /home/rayiik/fzf/conf/.fzf.bash; else
+if test -f $HOME/fzf/conf/.fzf.bash; then
+  . $HOME/fzf/conf/.fzf.bash; else
   echo "$red .fzf.bash not found $nc"
 fi
 
 if test -f /usr/share/bash-completion/bash_completion; then
 		test -r /usr/share/bash-completion/bash_completion &&
     . /usr/share/bash-completion/bash_completion; elif
-test -f /home/rayiik/.local/share/bash-completion/bash_completion; then
-. /usr/share/bash-completion/bash_completion && \
+test -f "$HOME"/.local/share/bash-completion/bash_completion; then
+. "$HOME"/bash-completion/bash_completion && \
 echo "$red user bash completion not loaded $nc"; else
 echo "$red failed to load bash-completion $nc"
 fi
@@ -236,33 +202,26 @@ if  test -d /etc/profile.d; then
 	unset profile
 fi
 . `which env_parallel`
-if test -r /home/rayiik/.bash_aliases; then
-	. /home/rayiik/.bash_aliases; else
+if test -r "$HOME"/.bash_aliases; then
+	. "$HOME"/.bash_aliases; else
   echo "$red failed to load bash_aliases $nc"
 fi
 
  if [ -x /usr/bin/dircolors ]; then
-    test -r /home/rayiik/.dircolors && eval "$(dircolors -b ~/.dircolors)" ||
+    test -r "$HOME"/.dircolors && eval "$(dircolors -b ~/.dircolors)" ||
       eval "$(dircolors -b)"; else
     echo "$red failed to load dircolors $nc"
  fi
 complete -F _complete_alias container
 
-if test -f '/home/rayiik/ripgrep.conf'; then
-export RIPGREP_CONFIG_PATH='/home/rayiik/ripgrep.conf'; else
+if test -f "$HOME"/ripgrep.conf; then
+export RIPGREP_CONFIG_PATH='"$HOME"/ripgrep.conf'; else
 echo "$red failed to load ripgrep.conf $nc"
 fi
 #-------------------------------------------------------------------------------
 # functions
 #-------------------------------------------------------------------------------
 
-_assw () {
-  if [[ "$ATHAME_ENABLED" == 1 ]]; then
-    export ATHAME_ENABLED=0 ; else
-    export ATHAME_ENABLED=1
-  fi
-  echo "$ATHAME_ENABLED"
-}
 _psudo () {
   printf '%s' sudo\\s
 }
@@ -273,18 +232,6 @@ bind -m emacs-standard '"\er": redraw-current-line'
 bind -m vi-command '"\C-z": emacs-editing-mode'
 bind -m vi-insert '"\C-z": emacs-editing-mode'
 bind -m emacs-standard '"\C-z": vi-editing-mode'
-
-#bind -m vi-insert -x '"\\C-\\e\\": "_assw " '
-#bind -m vi-command -x '"\\C-\\e\\": "_assw " '
-#bind -m vi-insert -x '"\\es":" \\C-a `_psudo` \\C-\\ee"'
-#bind -m vi-command -x '"\\es":" \\C-a `_psudo` \\C-\\ee"'
-#bind -m emacs-standard '"\\es":" \\C-a `_psudo` \\C-\\ee"'
-
-
-#eval "$(cod init $$ bash)"
-#eval "$(navi widget bash)"
-#eval "$(pyenv init -)"
-# bash config
 
 
 #-------------------------------------------------------------------------------
@@ -328,15 +275,14 @@ set -o vi
 clear
 
 #-------------------------------------------------------------------------------
-#shell bling
+#shell bling this is my nametag / start up image
 #-------------------------------------------------------------------------------
-cnat
-neofetch
-echo "$green testing display $nc"
-if [[ -z "$DISPLAY" ]]; then
- echo  "$cyan this is not xserver $nc"; else
-  echo "$magenta display is $DISPLAY xserver running $nc"
-fi
+#cnat
+#neofetch
+#echo "$green testing display $nc"
+#if [[ -z "$DISPLAY" ]]; then
+# echo  "$cyan this is not xserver $nc"; else
+#  echo "$magenta display is $DISPLAY xserver running $nc"
+#fi
 
-## help "$READLINE_LINE" 2>/dev/null || man "$READLINE_LINE";
 # mycroftboot
