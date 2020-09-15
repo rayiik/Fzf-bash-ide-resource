@@ -55,9 +55,8 @@ if exists('skip_defaults_vim')
 endif
 
 " file type and syntax highliting on
-
 let b:current_syntax = 'bash'
-let g:colorizer_auto_filetype='sh,vim'
+let g:colorizer_auto_filetype='bash,sh,vim'
 command ColorHighlight syntax
 let g:colirizer_x11_names = 1
 let g:colirizer_syntax = 1
@@ -88,7 +87,7 @@ highlight ExtraWhitespace ctermbg=cyan guibg=cyan
 autocmd InsertLeave * redraw!
 match ExtraWhitespace /\s\+$\| \+\ze\t/
 autocmd BufWritePre * :%s/\s\+$//e
-packloadall
+"packloadall
 let g:Bash_AlsoBash = [ '*.SlackBuild' , 'rc.*' ]
 " color scheme
 
@@ -115,11 +114,11 @@ set splitbelow
 set nomodeline
 set showcmd
 set showmatch
-set tabstop=2
-set shiftwidth=2
-set expandtab
+set tabstop=8
+set shiftwidth=4
+set noexpandtab
 set cinoptions=(0,m1,:1
-set tw=80
+set tw=120
 set lazyredraw
 set formatoptions=tcqro2
 set smartindent

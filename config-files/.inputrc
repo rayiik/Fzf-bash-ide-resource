@@ -1,0 +1,440 @@
+" ": self-insert
+"!": self-insert
+"#": self-insert
+"$": self-insert
+"%": self-insert
+"&": self-insert
+"(": self-insert
+")": self-insert
+"*": self-insert
+"+": self-insert
+",": self-insert
+"-": self-insert
+".": self-insert
+"/": self-insert
+"0": self-insert
+"1": self-insert
+"2": self-insert
+"3": self-insert
+"4": self-insert
+"5": self-insert
+"6": self-insert
+"7": self-insert
+"8": self-insert
+"9": self-insert
+":": self-insert
+";": self-insert
+"<": self-insert
+"=": self-insert
+">": self-insert
+"?": self-insert
+"@": self-insert
+"A": self-insert
+"B": self-insert
+"C": self-insert
+"D": self-insert
+"E": self-insert
+"F": self-insert
+"G": self-insert
+"H": self-insert
+"I": self-insert
+"J": self-insert
+"K": self-insert
+"L": self-insert
+"M": self-insert
+"N": self-insert
+"O": self-insert
+"P": self-insert
+"Q": self-insert
+"R": self-insert
+"S": self-insert
+"T": self-insert
+"U": self-insert
+"V": self-insert
+"W": self-insert
+"X": self-insert
+"Y": self-insert
+"Z": self-insert
+"[": self-insert
+"\237": self-insert
+"\C-?": backward-delete-char
+"\C-d": vi-eof-maybe
+"\C-h": magic-space
+"\C-i": complete
+"\C-j": dynamic-complete-history
+"\C-k": unix-word-rubout
+"\C-l": redraw-current-line
+"\C-m": accept-line
+"\C-n": operate-and-get-next
+"\C-r": reverse-search-history
+"\C-s": forward-search-history
+"\C-u": unix-line-discard
+"\C-v": quoted-insert
+"\eh": vi-command-mode
+"\el": vi-insert-mode
+"\C-w": vi-unix-word-rubout
+"\C-y": yank
+"\C-z": emacs-editing-mode
+"\\": self-insert
+"\e": vi-movement-mode
+"[tab]": complete
+"\eOA": previous-history
+"\eOB": next-history
+"\eOC": forward-char
+"\eOD": backward-char
+"\eOF": end-of-line
+"\eOH": beginning-of-line
+"\e[0n": redraw-current-line
+"\e[1;3C": forward-word
+"\e[1;3D": backward-word
+"\e[1;5C": forward-word
+"\e[1;5D": backward-word
+"\e[1~": beginning-of-line
+#"\e[200~": bracketed-paste-begin
+"\e[2~": overwrite-mode
+"\e[3;5~": kill-word
+"\e[3~": delete-char
+"\e[4~": end-of-line
+"\e[A": kill-line
+"\e[B": next-history
+"\e[C": forward-char
+"\e[D": backward-char
+"\e[F": end-of-line
+"\e[H": beginning-of-line
+"\C-a": beginning-of-line
+"\e\C-e": end-of-line
+"\e\C-b": "\C-a ' \e\C-e ' > /dev/null 2>&1 & \C-m"
+"Meta-s": vi-insert-beg"sudo"vi-append-eol
+"\C-b": vi-insert-beg
+"\e\C-a": shell-expand-line
+"]": self-insert
+"^": self-insert
+"'": self-insert
+"_": self-insert
+"`": self-insert
+"a": self-insert
+"b": self-insert
+"c": self-insert
+"d": self-insert
+"e": self-insert
+"f": self-insert
+"g": self-insert
+"h": self-insert
+"i": self-insert
+"j": self-insert
+"k": self-insert
+"l": self-insert
+"m": self-insert
+"n": self-insert
+"o": self-insert
+"p": self-insert
+"q": self-insert
+"r": self-insert
+"s": self-insert
+"t": self-insert
+"u": self-insert
+"v": self-insert
+"w": self-insert
+"x": self-insert
+"y": self-insert
+"z": self-insert
+"{": self-insert
+"|": self-insert
+"}": self-insert
+"~": self-insert
+" ": self-insert
+"¡": self-insert
+"¢": self-insert
+"£": self-insert
+"¤": self-insert
+"¥": self-insert
+"¦": self-insert
+"§": self-insert
+"¨": self-insert
+"©": self-insert
+"ª": self-insert
+"«": self-insert
+"¬": self-insert
+"­": self-insert
+"®": self-insert
+"¯": self-insert
+"°": self-insert
+"±": self-insert
+"²": self-insert
+"³": self-insert
+"´": self-insert
+"µ": self-insert
+"¶": self-insert
+"·": self-insert
+"¸": self-insert
+"¹": self-insert
+"º": self-insert
+"»": self-insert
+"¼": self-insert
+"½": self-insert
+"¾": self-insert
+"¿": self-insert
+"À": self-insert
+"Á": self-insert
+"Â": self-insert
+"Ã": self-insert
+"Ä": self-insert
+"Å": self-insert
+"Æ": self-insert
+"Ç": self-insert
+"È": self-insert
+"É": self-insert
+"Ê": self-insert
+"Ë": self-insert
+"Ì": self-insert
+"Í": self-insert
+"Î": self-insert
+"Ï": self-insert
+"Ð": self-insert
+"Ñ": self-insert
+"Ò": self-insert
+"Ó": self-insert
+"Ô": menu-complete
+"Õ": self-insert
+"Ö": self-insert
+"×": self-insert
+"Ø": self-insert
+"Ù": self-insert
+"Ú": self-insert
+"Û": self-insert
+"Ü": self-insert
+"Ý": self-insert
+"Þ": self-insert
+"ß": self-insert
+"à": self-insert
+"á": self-insert
+"â": self-insert
+"ã": self-insert
+"ä": self-insert
+"å": self-insert
+"æ": self-insert
+"è": self-insert
+"é": self-insert
+"ê": self-insert
+"ë": self-insert
+"ì": self-insert
+"í": self-insert
+"î": self-insert
+"ï": self-insert
+"ð": self-insert
+"ñ": self-insert
+"ò": self-insert
+"ó": self-insert
+"ô": self-insert
+"õ": self-insert
+"ö": self-insert
+"÷": self-insert
+"ø": self-insert
+"ù": self-insert
+"ú": self-insert
+"û": self-insert
+"ü": self-insert
+"ý": self-insert
+"þ": self-insert
+"ÿ": self-insert
+#"\"": self-insert
+# Append char to indicate type
+# Color files by types
+# Color the common prefix
+# Color the common prefix in menu-complete
+# Mark symlinked directories
+# Note that this may cause completion text blink in some terminals (e.g. xterm).
+# abort (not bound)
+# alias-expand-line (not bound)
+# arrow-key-prefix (not bound)
+# backward-byte (not bound)
+# backward-kill-line (not bound)
+# backward-kill-word (not bound)
+# beginning-of-history (not bound)
+# call-last-kbd-macro (not bound)
+# capitalize-word (not bound)
+# character-search (not bound)
+# character-search-backward (not bound)
+# clear-screen (not bound)
+# complete-command (not bound)
+# complete-filename (not bound)
+# complete-hostname (not bound)
+# complete-into-braces (not bound)
+# complete-username (not bound)
+# complete-variable (not bound)
+# copy-backward-word (not bound)
+# copy-forward-word (not bound)
+# copy-region-as-kill (not bound)
+# dabbrev-expand (not bound)
+# delete-char-or-list (not bound)
+# delete-horizontal-space (not bound)
+# digit-argument (not bound)
+# display-shell-version (not bound)
+# do-lowercase-version (not bound)
+# downcase-word (not bound)
+# dump-fucntions variables macros
+# dump-functions (not bound)
+# dump-macros (not bound)
+# dump-variables (not bound)
+# dynamic-complete-history(not bound)
+# end-kbd-macro (not bound)
+# end-of-history (not bound)
+# exchange-point-and-mark (not bound)
+# forward-backward-delete-char (not bound)
+# forward-byte (not bound)
+# glob-complete-word (not bound)
+# glob-expand-word (not bound)
+# glob-list-expansions (not bound)
+# history-and-alias-expand-line (not bound)
+# history-expand-line (not bound)
+# history-search-backward (not bound)
+# history-search-forward (not bound)
+# history-substring-search-backward (not bound)
+# history-substring-search-forward (not bound)
+# insert-comment (not bound)
+# insert-completions (not bound)
+"\e\C-i": insert-last-argument
+# kill-line (not bound)
+# kill-region (not bound)
+# kill-whole-line (not bound)
+# magic-space (not bound)
+# menu-complete-backward (not bound)
+# next-screen-line (not bound)
+# non-incremental-forward-search-history (not bound)
+# non-incremental-forward-search-history-again (not bound)
+# non-incremental-reverse-search-history (not bound)
+# non-incremental-reverse-search-history-again (not bound)
+# old-menu-complete (not bound)
+# operate-and-get-next (not bound)
+# possible-command-completions (not bound)
+# possible-completions (not bound)
+# possible-filename-completions (not bound)
+# possible-hostname-completions (not bound)
+# possible-username-completions (not bound)
+# possible-variable-completions (not bound)
+# previous-screen-line (not bound)
+# print-last-kbd-macro (not bound)
+# re-read-init-file (not bound)
+# revert-line (not bound)
+# set-mark (not bound)
+# shell-backward-kill-word (not bound)
+# shell-backward-word (not bound)
+# shell-forward-word (not bound)
+# shell-kill-word (not bound)
+# skip-csi-sequence (not bound)
+# start-kbd-macro (not bound)
+# tab-insert (not bound)
+# these are for vi-command mode
+# these are for vi-insert mode
+# tilde-expand (not bound)
+# transpose-chars (not bound)
+# transpose-words (not bound)
+# tty-status (not bound)
+# undo (not bound)
+# universal-argument (not bound)
+# unix-filename-rubout (not bound)
+# unix-word-rubout (not bound)
+# upcase-word (not bound)
+# vi-append-eol (not bound)
+# vi-append-mode (not bound)
+# vi-arg-digit (not bound)
+# vi-bWord (not bound)
+# vi-back-to-indent (not bound)
+# vi-backward-bigword (not bound)
+# vi-backward-word (not bound)
+# vi-bword (not bound)
+# vi-change-case (not bound)
+# vi-change-char (not bound)
+# vi-change-to (not bound)
+# vi-char-search (not bound)
+# vi-column (not bound)
+# vi-complete (not bound)
+# vi-delete (not bound)
+# vi-delete-to (not bound)
+# vi-eWord (not bound)
+# vi-editing-mode (not bound)
+# vi-end-bigword (not bound)
+# vi-end-word (not bound)
+# vi-eword (not bound)
+# vi-fWord (not bound)
+# vi-fetch-history (not bound)
+# vi-first-print (not bound)
+# vi-forward-bigword (not bound)
+# vi-forward-word (not bound)
+# vi-fword (not bound)
+# vi-goto-mark (not bound)
+# vi-insertion-mode (not bound)
+# vi-match (not bound)
+# vi-next-word (not bound)
+# vi-overstrike (not bound)
+# vi-overstrike-delete (not bound)
+# vi-prev-word (not bound)
+# vi-put (not bound)
+# vi-redo (not bound)
+# vi-replace (not bound
+# vi-rubout (not bound)
+# vi-search (not bound)
+# vi-search-again (not bound)
+# vi-set-mark (not bound)
+# vi-subst (not bound)
+# vi-tilde-expand (not bound)
+# vi-yank-arg (not bound)
+# vi-yank-pop (not bound)
+# vi-yank-to (not bound)
+# yank-last-arg (not bound)
+# yank-nth-arg (not bound)
+# yank-pop (not bound)
+#"ctrl-space": 
+#"\e[l": redraw-current-line
+#"[24~": vi-subst
+set bell-style none
+set bind-tty-special-chars on
+set blink-matching-paren on
+set byte-oriented off
+set colored-completion-prefix on
+set colored-stats on
+set comment-begin #
+set completion-display-width -1
+set completion-ignore-case on
+set completion-map-case on
+set completion-prefix-display-length 0
+set completion-query-items 100
+set convert-meta off
+set disable-completion off
+set echo-control-characters off
+set editing-mode vi
+set emacs-mode-string @
+set enable-bracketed-paste on
+set enable-keypad on
+set enable-meta-key on
+set expand-tilde on
+set history-preserve-point on
+set history-size 10000
+set horizontal-scroll-mode off
+set input-meta on
+set keymap vi-insert
+set keyseq-timeout 00
+set mark-directories on
+set mark-modified-lines on
+set mark-symlinked-directories on
+set match-hidden-files on
+set menu-complete-display-prefix on
+set meta-flag on
+set output-meta on
+set page-completions on
+set prefer-visible-bell off
+set print-completions-horizontally on
+set revert-all-at-newline off
+set show-all-if-ambiguous on
+set show-all-if-unmodified on
+set show-mode-in-prompt on
+set skip-completed-text on
+set vi-cmd-mode-string (cmd)
+set vi-ins-mode-string (ins)
+set visible-stats on
+set meta-flag on
+set input-meta on
+set convert-meta off
+set output-meta on
+
+
