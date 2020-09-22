@@ -1,0 +1,37 @@
+#!/bin/bash
+export PGM="$HOME/project/Man-fzf-scripts"
+export PGCONF="$PGM/config-files"
+
+if test -f "$PGCONF/ripgrep.conf"; then
+export RIPGREP_CONFIG_PATH="$PGCONF/ripgrep.conf"; else
+echo "$col1 failed to load ripgrep.conf $nc"
+fi
+
+if test -f "$PGM"/fzf/conf/.fzf.bash; then
+. "$PGM"/fzf/conf/.fzf.bash; else
+  echo "$col1 .fzf.bash not found $nc"
+fi
+appendpath () {
+    case ":$PATH:" in
+        *:"$1":*)
+            ;;
+        *)
+            PATH="${PATH:+$PATH:}$1"
+    esac
+}
+appendpath "$PGM"/arch-related
+appendpath "$PGM"/fzf
+appendpath "$PGM"/fzf/fzf-scripts
+appendpath "$PGM"/fzf/fzf-scripts/fzf-modified
+appendpath "$PGM"/fzf/fzf-scripts/unused
+appendpath "$PGM"/fzf/fzfconf
+appendpath "$PGM"/fzf/fzfscripts
+appendpath "$PGM"/fzf/fzfscripts/fzf-man
+appendpath "$PGM"/fzf/fzfscripts/script-mod
+appendpath "$PGM"/fzf/fzfscripts/utilscripts
+appendpath "$PGM"/misc
+appendpath "$PGM"/utils
+unset appendpath
+
+
+
