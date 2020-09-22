@@ -1,0 +1,24 @@
+#!/bin/bash -
+#===============================================================================
+#
+#          FILE: csnip.sh
+#
+#         USAGE: ./csnip.sh
+#
+#   DESCRIPTION:
+#
+#       OPTIONS: ---
+#  REQUIREMENTS: ---
+#          BUGS: ---
+#         NOTES: ---
+#        AUTHOR: Rayiik (), dsimon_aas@hotmail.com
+#  ORGANIZATION:
+#       CREATED: 09/16/2020 11:26:30 PM
+#      REVISION:  ---
+#===============================================================================
+
+writecmd() {
+  perl -e 'ioctl STDOUT, 0x5412, $_ for split //, do { chomp($_ = <>); $_ }'
+}
+
+
