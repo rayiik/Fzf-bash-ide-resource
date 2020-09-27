@@ -1,15 +1,17 @@
 #!/bin/bash
-declare -a termsym
-termsym=( infocmp "$1" | )
+#declare -a termsym
+#termsym=( infocmp "$1" | )
+fztin () {
 if [[ -z "$1" ]]; then
 fd -uu . -t f /usr/share/terminfo \
   | awk -F / '{print  $NF}' \
   | sort -u \
-  | fzf --bind="alt-p:execute(echo "$(infocmp {})" >> "$HOME"/tmp/{}.tmp)" \
-  --preview-window 'right:85:wrap' \
-  --preview='cnat; infocmp {} -l  | colorize; fline; ascii -1 | colorize'; else
-  term="$(infocmp "$1" | vipe)"
+  | fzf --bind="alt-p:execute:echo $(infocmp {}) >> $HOME/tmp/{}.tmp" \
+  --preview-window "right:85:wrap" \
+  --preview="cnat; infocmp {} -l  | colorize; fline; ascii -1 | colorize"; else
+  term="$(infocmp "$1")"
 fi
+export term
+}
+fztin "$@"
 
-READLINE_LINE="${READLINE_LINE:+"print '%s' $term"}"
-printf '%s' "$READLINE_LINE"

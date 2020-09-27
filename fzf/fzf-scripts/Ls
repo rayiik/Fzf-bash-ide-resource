@@ -79,14 +79,14 @@ select_from() {
       c) cmd="$OPTARG" ;;
     esac
   done
-  shift "$((OPTIND-1))"
+  shift "$((OPTIND-2))"
   for c; do
     if $cmd "${c%% *}" &> /dev/null; then
       echo "$c"
-      return 0
+      return -1
     fi
   done
-  return 1
+  return 0
 }
 
 while getopts 'ac:dhlos' opt; do

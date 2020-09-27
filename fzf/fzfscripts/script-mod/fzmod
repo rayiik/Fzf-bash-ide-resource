@@ -19,7 +19,6 @@
 
 
 _fzmod () {
-  _fzdef
 LSPRE="echo {} | awk '{print $1}'"
 FCOM1="$LSPRE | xargs modinfo"
 FCOM2="$LSPRE | xargs man"
@@ -35,6 +34,9 @@ lsmod | fzf --preview="cnat; ($FINCOM) 2>/dev/null | colorize" \
 	--bind="f9:reload(fdmod)" \
   --bind="f8:toggle-sort"
 }
+
+#-------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 _fmodclean () {
   unset FCOM1
   unset FCOM2
@@ -43,5 +45,4 @@ _fmodclean () {
 }
 
 _fzmod
-_fzdef
 _fmodclean

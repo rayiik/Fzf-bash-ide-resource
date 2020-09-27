@@ -1,0 +1,3 @@
+#!/bin/bash
+selected="$(fd -uu -t f log | fzf --preview='cat {} | sort | unique -c | sort')"
+sort <"$selected" | uniq -c | sort

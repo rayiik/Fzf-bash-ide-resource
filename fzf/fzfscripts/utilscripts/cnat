@@ -17,7 +17,7 @@
 #===============================================================================
 
 _cnat () {
-cat /home/rayiik/fzfscripts/utilscripts/nonexecutable/namet | colorize
+cat "$PGM"/fzf/fzfscripts/utilscripts/nonexecutable/namet | colorize
 }
 _cnat
 fline

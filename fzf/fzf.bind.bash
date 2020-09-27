@@ -65,11 +65,11 @@ __fzf_select__() {
 
 if [[ $- =~ i ]]; then
 
-#__fzfcmd() {
-#  [ -n "$TMUX_PANE" ] && { [ "${FZF_TMUX:-0}" != 0 ] || [ -n "$FZF_TMUX_OPTS" ]; } &&
-#    echo "fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:100%}}
-#      --preview='cnat; moreman {}' -- " || echo "fzf"
-#}
+__fzfcmd() {
+  [ -n "$TMUX_PANE" ] && { [ "${FZF_TMUX:-0}" != 0 ] || [ -n "$FZF_TMUX_OPTS" ]; } &&
+    echo "fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:100%}}
+      --preview='cnat; moreman {}' -- " || echo "fzf"
+}
 
 fzf-file-widget() {
   local selected="$(__fzf_select__)"
@@ -133,11 +133,11 @@ else
   bind -m vi-insert -x '"\C-p": __fzf_history__'
 fi
 
-# cusomt CTRL-E - paste from cmd function
-  bind -m emacs-standard -x '"\C-e": fzf-coms-widget '
-  bind -m vi-command -x '"\C-e": fzf-coms-widget '
-  bind -m vi-insert -x '"\C-e": fzf-coms-widget '
-
+## cusomt CTRL-E - paste from cmd function
+#  bind -m emacs-standard -x '"\C-e": fzf-coms-widget '
+#  bind -m vi-command -x '"\C-e": fzf-coms-widget '
+#  bind -m vi-insert -x '"\C-e": fzf-coms-widget '
+#
 # ALT-C - cd into the selected directory
 bind -m emacs-standard '"\ec": " \C-b\C-k \C-u`__fzf_cd__`\e\C-e\er\C-m\C-y\C-h\e \C-y\ey\C-x\C-x\C-d"'
 bind -m vi-command '"\ec": "\C-z\ec\C-z"'

@@ -1,4 +1,5 @@
 #!/bin/bash
+eccho "sourcefile"
 export PGM="$HOME/project/Man-fzf-scripts"
 export PGCONF="$PGM/config-files"
 

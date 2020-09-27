@@ -1,5 +1,7 @@
 #!/bin/bash
 _fline () {
-  printf "%${COLUMNS:-137}s" " "  | tr " " "-"
+lnum="${COLUMNS:-137}"
+    echo "$(tput setaf 2) $(printf "%${lnum}s" " "  | tr " " "-") $nc"
+    unset lnum
 }
-echo "$(_fline)" | colorize
+_fline

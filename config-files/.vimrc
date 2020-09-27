@@ -19,21 +19,21 @@ mapclear "<F9>"
 imapclear "<F9>"
 nmapclear "<F9>"
 mapclear "<F9>"
-noremap "<F9><NoWait>" : "<Cmd>:!export ATHAME_ENABLED=0<Cr>"
+noremap "<F9><NoWait>" : "<Cmd>:!export ATHAME_ENABLED=0<CR>"
 inoremap "<C-Space>" : "<ESC>"
 inoremap "<C-Space>" "<ESC>"
-map <leader>w :w! !sudo tee %<cr>
-map <leader>mm :set modifiable<cr>
-map <leader>mm :set modifiable<cr>
-map <leader>fzc :Commands<cr>
-map <leader>fzh :Helptags<cr>
-map <leader>ff :set filetype=bash<cr>
-map <leader>ft :set fo-=t<cr>
-map <leader>fo :set fo+=t<cr>
-map <leader>fm :mode<cr>
-map <leader>f1 :set tw=120<cr>:redraw<cr>
-map <leader>f2 :set tw=65<cr>:redraw<cr>
-map <leader>f3 :set tw=30<cr>:redraw<cr>
+map <leader>w :w! !sudo tee %<CR>
+map <leader>mm :set modifiable<CR>
+map <leader>mm :set modifiable<CR>
+map <leader>fzc :Commands<CR>
+map <leader>fzh :Helptags<CR>
+map <leader>ff :set filetype=bash<CR>
+map <leader>ft :set fo-=t<CR>
+map <leader>fo :set fo+=t<CR>
+map <leader>fm :mode<CR>
+map <leader>f1 :set tw=120<CR>:redraw<cr>
+map <leader>f2 :set tw=65<CR>:redraw<cr>
+map <leader>f3 :set tw=30<CR>:redraw<cr>
 map <leader><F1> <esc>vap%"paragraph
 map <leader><F13> <esc>"paragraph p
 " sessions
@@ -161,7 +161,7 @@ set foldmethod=marker
 set ttyfast
 set history=10000
 set hidden
-set colorcolumn=81
+set colorcolumn=120
 set number
 set complete=.,w,b,u,t
 set completeopt=longest,menuone,preview
@@ -170,7 +170,6 @@ set nrformats-=octal
 set foldlevelstart=0
 set wildmenu
 set wildmode=list:longest,full
-set nowrap
 set statusline+=%{getcwd()}\/\%f%=%-14.(%l,%c%V%)\ %P
 set autoread
 " set conceallevel=2
@@ -254,12 +253,12 @@ let g:syntastic_mode = 2
 let b:syntastic_mode = 2
 let g:syntastic_mode_map = {
      \ "mode": "active",
-      \ "active_filetypes": ["bash", "sh", "**"],
-      \ "passive_filetypes": ["bash", "sh", "html"]}
-nnoremap <Leader><esc> :Errors<cr>
-nnoremap <Leader>\sc, :SyntasticCheck<cr>
-vnoremap <Leader>,o :lopen<cr>
-nnoremap <Leader>,c :lclose<cr>
+      \ "active_filetypes": ["bash", "sh", "vim", "**"],
+      \ "passive_filetypes": ["bash", "sh", "vim", "html"]}
+nnoremap <Leader><esc> :Errors<CR>
+nnoremap <Leader>\sc, :SyntasticCheck<CR>
+vnoremap <Leader>,o :lopen<CR>
+nnoremap <Leader>,c :lclose<CR>
 
 
 highlight SyntasticErrorSign guifg=white guibg=black

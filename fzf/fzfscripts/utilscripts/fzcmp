@@ -1,9 +1,0 @@
-#!/bin/bash
-fzfcmp () {
-  local term="$(infocmp "$TERM" -1 | fzf --preview="echo $READLINE_LINE {q}" --phony \
-      --bind="f9:replace-query+print-query+reload:infocmp $TERM -1")"
- READLINE_LINE="${READLINE_LINE:0:$READLINE_POINT}$term${READLINE_LINE:$READLINE_POINT}"
-  READLINE_POINT=$(( READLINE_POINT + ${#term} ))
-unset term
-}
-bind -x '"\et": fzfcmp'

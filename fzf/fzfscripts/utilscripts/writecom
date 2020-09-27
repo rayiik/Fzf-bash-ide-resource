@@ -21,4 +21,4 @@ writecmd() {
   perl -e 'ioctl STDOUT, 0x5412, $_ for split //, do { chomp($_ = <>); $_ }'
 }
 
-
+writecmd
