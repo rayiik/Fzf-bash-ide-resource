@@ -143,6 +143,8 @@ appendpath () {
 
 
 appendpath '/home/rayiik/.cargo/bin'
+
+appendpath '/home/rayiik/.cache/pacaur/opencv-cuda/src/build/python_loader'
 appendpath '/home/rayiik/.gem/ruby/2.7.0/bin'
 appendpath '/home/rayiik/.gem/ruby/2.7.0/gems/rake-13.01/bin'
 appendpath '/home/rayiik/.local/bin'

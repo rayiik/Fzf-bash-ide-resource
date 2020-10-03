@@ -84,14 +84,15 @@ __parse_options()
 }
 
 _fzcom () {
-_varset
+# _varset
   fzf  \
       --ansi --phony \
-      --preview="{ cnat; echo $_rlvar '{+}' 2>/dev/null ; fline ; \
-      moreman $_tvar 2>/dev/null | \
+      --preview="{ echo $_rlvar '{+}' 2>/dev/null; fline;  \
+      tput sgr0;  moreman $_tvar 2>/dev/null | \
+      rg -e '{q}' -C6 | \
       rg  --no-filename \
-      -C 4  --no-line-number \
-      -e '{}' 2>/dev/null; } " \
+      -C4  --no-line-number \
+      -e '{+}' -e '{}' 2>/dev/null; } " \
   --preview-window=right:65:wrap \
   --info=default \
   --bind='ctrl-a:preview-page-up' \
@@ -109,7 +110,7 @@ _varset
   --bind="alt-n:preview:'moreman {} | rg {q} -C4  \
           --passthru --no-filename'" \
   --no-clear \
-  --bind="f9:preview:'cnat; moreman {} | rg {q} -C4 --no-filename \
+  --bind="f9:preview:'moreman {} | rg {q} -C4 --no-filename \
   --passthrur'+refresh-preview" \
   --phony
 }
@@ -123,14 +124,20 @@ _fline () {
 }
 #
 ################################################################################
+#-------------------------------------------------------------------------------
+# this sets function sets our realine variable
+#-------------------------------------------------------------------------------
 #
 _varset () {
-_tvar="$( awk -F ' ' '{print $NF}' <<<"$READLINE_LINE")"
+_tvar="$(awk -F ' ' '{print $NF}' <<<"$READLINE_LINE")"
 _rlvar="$READLINE_LINE"
 export _rlvar
 export _tvar
 }
-
+#-------------------------------------------------------------------------------
+# this function trims out put to flags starting with -/-- but is better for
+# fzf
+#-------------------------------------------------------------------------------
 rgt () {
  rg --ignore-case \
   --color=ansi \
@@ -140,28 +147,36 @@ rgt () {
 }
 #
 ################################################################################
+#-------------------------------------------------------------------------------
 # this function pulls removes any word not starting with -
+#-------------------------------------------------------------------------------
 #
 _fztrim() {
-  _varset
-  echo "$_tvar" \
-  | xargs -r moreman \
-  | rg --ignore-case \
-  --color=ansi \
-  --no-filename \
-  --only-matching \
-  -e '-[-a-zA-Z0-9]*' | \
-  sort -u
+ _varset
+ local _trimvar
+_trimvar="$_tvar"
+  { moreman "$_trimvar";"$_trimvar" --help; } | \
+rg --ignore-case \
+-e '-[-a-zA-Z0-9]*' \
+-e '-[-a-zA-Z][0-9a-z]*' \
+-e '-[a-zA-Z].' \
+--only-matching \
+--no-filename | \
+sort -u | \
+sed -e 's/^--$//' | \
+sed -e 's/^-$//'
 }
-# -e '\s-[A-Z a-z].' \
 #
 ################################################################################
-#
+#-------------------------------------------------------------------------------
+# this is a main body script function that parses readline and uses commands
+# from bash-completion to generate results
+#-------------------------------------------------------------------------------
 #
 run-help () {
 _varset "$@"
 _choice=$(rh_com "$_rlvar")
-READLINE_LINE="$READLINE_LINE ${_choice#*$'\t'}"
+READLINE_LINE="$READLINE_LINE $(tr '\n' ' ' <<<"${_choice#*$'\t'}")"
 if [[ -n "$READLINE_LINE" ]]; then
   print '%s '"$READLINE_LINE" | \
     tr \\n \\s;
@@ -173,14 +188,20 @@ fcomclean
 }
 #
 ################################################################################
-#
+#-------------------------------------------------------------------------------
+# this is a sub command of run-help that calls the completion functions
+# to the fzf script
+#-------------------------------------------------------------------------------
+
 rh_com () {
-  _varset
-  _parse_help "$_tvar" | _fzcom
+#  _varset
+ _fztrim "$_tvar" | _fzcom
 }
-#
+#_parse-help swaps with _fztrim (still in testin)
 ################################################################################
+#-------------------------------------------------------------------------------
 # unused for now
+#-------------------------------------------------------------------------------
 #_fzf_args() {
 #  _varset
 #  local selected=$(_fini)
@@ -191,7 +212,9 @@ rh_com () {
 #}
 #
 ################################################################################
-#
+#-------------------------------------------------------------------------------
+# this command populates a list with commands from $PATH
+#-------------------------------------------------------------------------------
 __coms_select__() {
   local FZF_DEFAULT_OPTS
   local cmd="command __com1"
@@ -200,7 +223,7 @@ __coms_select__() {
         FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --bind='f4:execute({} --help; {}
           | up)' --height 100% \
     --reverse " "$(__fzfcmd)" \
-    -m "$@" --preview="cnat; moreman {} | rg -e '-[-a-zA-Z0-9]*\s' \
+    -m "$@" --preview="moreman {} | rg -e '-[-a-zA-Z0-9]*\s' \
       -e [A-Z][A-Z].*\s \
       --passthru --no-filename" |\
   while read -r item; do
@@ -210,6 +233,9 @@ __coms_select__() {
 }
 #
 ################################################################################
+#-------------------------------------------------------------------------------
+# the core commands generator
+#-------------------------------------------------------------------------------
 #
 _coms_ () {
 case "$PATH" in
@@ -229,9 +255,12 @@ done
 }
 #
 ################################################################################
+#-------------------------------------------------------------------------------
+#  filters commands down to just name
+#-------------------------------------------------------------------------------
 #
 cmmd () {
- _varset
+# _varset
 	"_coms_" | \
 		awk '{print $1}' | \
 		sort -u | \
@@ -239,7 +268,10 @@ cmmd () {
 		}
 #
 ################################################################################
-#
+#-------------------------------------------------------------------------------
+# currently unused but will be a switch between phony fzf searching preview
+# from {q} and regular searching
+#-------------------------------------------------------------------------------
   _flgswap () {
     if [[ "$_flag_" == ' phony' ]]; then
       _flag_="sync"; elif
@@ -251,15 +283,20 @@ cmmd () {
   }
 #
 ################################################################################
+#-------------------------------------------------------------------------------
 # alt o c fzf commnad
+#-------------------------------------------------------------------------------
 #
 __fzfcmd() {
   [ -n "$TMUX_PANE" ] && { [ "${FZF_TMUX:-0}" != 0 ] || [ -n "$FZF_TMUX_OPTS" ]; } &&
     echo "fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:100%}}
-      --preview='cnat; moreman {}' -- " || echo "fzf"
+      --preview='moreman {}' -- " || echo "fzf"
 }
 #
 #################################################################################
+#-------------------------------------------------------------------------------
+#core fzf command
+#-------------------------------------------------------------------------------
 #
 _cmf (){
   _varset
@@ -284,12 +321,15 @@ fzf \
   --bind="f9:preview:'man $_tvar | rg {}'"\
 	--bind="ctrl-h:execute(moreman $_tvar)" \
   --layout=default \
-	--preview="cnat; moreman {} | rg --no-filename --passthru -e '-[a-zA-Z0-9]*'" \
+	--preview="moreman {} | rg --no-filename --passthru -e '-[a-zA-Z0-9]*'" \
   --bind='alt-r:reload(_flgswap)' \
   --phony
 }
 #
 ################################################################################
+#-------------------------------------------------------------------------------
+#cleans variales after execution
+#-------------------------------------------------------------------------------
 #
 fcomclean () {
 unset _iniquery
@@ -305,7 +345,9 @@ unset selected
 }
 #
 ################################################################################
-#
+#-------------------------------------------------------------------------------
+# calls commands and pipes them to fzf
+#-------------------------------------------------------------------------------
 _fini () {
   _varset
 local _tvar
@@ -313,19 +355,25 @@ cmmd | _cmf
 }
 
 ################################################################################
-#
+#-------------------------------------------------------------------------------
+# prints line after seletion
+#-------------------------------------------------------------------------------
 fzf-coms-widget() {
-  local selected="$(__coms_select__)"
+  local selected
+  selected="$(__coms_select__ "$@")"
   READLINE_LINE="${READLINE_LINE:0:$READLINE_POINT}$selected${READLINE_LINE:$READLINE_POINT}"
   READLINE_POINT=$(( READLINE_POINT + ${#selected} ))
 }
 #
 ################################################################################
-#
+#-------------------------------------------------------------------------------
+#another version the fzf-coms-widget
+#-------------------------------------------------------------------------------
 fini__ () {
 _varset
 _choice=$(_fini "$_rlvar")
-READLINE_LINE="$ $(echo -E "${_choice#*$'\s'}")"
+READLINE_LINE="$(echo -E "${_choice#*$' '}")"
+
 if [[ -n "$READLINE_LINE" ]]; then
   echo -E "$READLINE_LINE"; else
    READLINE_POINT=0x7fffffff
@@ -334,7 +382,9 @@ fcomclean
 }
 #
 ################################################################################
+#-------------------------------------------------------------------------------
 #
+#-------------------------------------------------------------------------------
 #
 _varset "$READLINE_LINE"
 echo "$_tvar"

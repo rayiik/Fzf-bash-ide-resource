@@ -4,7 +4,7 @@
 fztin () {
 if [[ -z "$1" ]]; then
 fd -uu . -t f /usr/share/terminfo \
-  | awk -F / '{print  $NF}' \
+  | awk -F/ '{print  $NF}' \
   | sort -u \
   | fzf --bind="alt-p:execute:echo $(infocmp {}) >> $HOME/tmp/{}.tmp" \
   --preview-window "right:85:wrap" \

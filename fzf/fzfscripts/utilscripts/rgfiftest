@@ -1,0 +1,66 @@
+#!/bin/bash -
+#===============================================================================
+#
+#          FILE: test.sh
+#
+#         USAGE: ./test.sh
+#
+#   DESCRIPTION:
+#
+#       OPTIONS: ---
+#  REQUIREMENTS: ---
+#          BUGS: ---
+#         NOTES: ---
+#        AUTHOR: Rayiik (), dsimon_aas@hotmail.com
+#  ORGANIZATION:
+#       CREATED: 08/03/2020 03:34:53 PM
+#      REVISION:  ---
+#===============================================================================
+
+fzfcmp () {
+    local term
+    local FZF_DEFAULT_COMMAND
+    FZF_DEFAULT_COMMAND="infocmp $TERM -1"
+    term="$(
+    infocmp "${_termchoice:-"$TERM"}" -1 | tr '=' '\n' | \
+       tr '\t' '' | \
+      sed 's/,$//' | fzf \
+      --preview='man terminfo | rg -C10 -e {q}' \
+        --preview-window='right:80:wrap' --phony \
+        --bind="f9:replace-query+preview:man terminfo | rg -C1 -e {q}" \
+            )"
+
+READLINE_LINE="${READLINE_LINE:0:$READLINE_POINT} $(awk -F= '{print $1}' <<<"${term:-''}" \
+    | sed 's/,$//') ${READLINE_LINE:$READLINE_POINT}"
+
+    if test -n "$(rg -e 'echo' <<<"$READLINE_LINE")"; then
+        READLINE_LINE=$READLINE_LINE; else
+READLINE_LINE="echo -e \"$READLINE_LINE\""
+    fi
+
+  READLINE_POINT=$(( READLINE_POINT + ${#term} ))
+unset term
+}
+changeterm () {
+    export "${_termchoice="$(fztin)"}"
+    fzfcmp
+}
+
+bind -x '"\et": fzfcmp'
+bind -x '"\em": changeterm'
+declare gvar=''
+declare Fvar=''
+if [[ -z "$1" ]]; then
+  Fvar='.'; else
+  Fvar="$1"
+fi
+if [[ -z "$2" ]]; then
+  gvar='.'; else
+  gvar="$2"
+fi
+grep_flag_available="rg '{q}' ./ --color=always --colors=match:fg:12 --no-filename"
+fd -uu -t f "$Fvar" | rg "$gvar" --no-filename | fzf --phony \
+  --preview="nvimpager -c {} | $grep_flag_available"
+unset gvar
+unset Fvar
+

@@ -36,20 +36,20 @@ export FZF_DEFAULT_OPTS="$FZF_MOVEMENT \
 	--ansi"
 if [[ -z "$DISPLAY" ]]; then
   FZF_DEFAULT_OPTS+="
-	--color=info:#ffff00 \
-  --color=prompt:#808080\
-  --color=pointer:#c0c0c0 \
-  --color=hl+:#ff00ff \
-	--color=marker:#14f73e \
-  --color=spinner:#ff0000 \
-  --color=header:#0fffd7 \
-  --color=border:#800000 \
-  --color=hl:#000080 \
-	--color=preview-fg:#22f040 \
-  --color=preview-bg:-1 \
-  --color=fg:-1 \
-	--color=fg+:#000080 \
-  --preview='${FZF_PREVIEW:+"cnat; $FZF_PREVIEW"}'";
+--color=info:1\
+--color=prompt:2 \
+--color=pointer:3 \
+--color=hl+:4 \
+--color=marker:6 \
+--color=spinner:7 \
+--color=header:8 \
+--color=border:9 \
+--color=hl:0 \
+--color=preview-fg:11 \
+--color=preview-bg:12 \
+--color=fg:13 \
+--color=fg+:14 \
+--preview='${FZF_PREVIEW:+"cnat; $FZF_PREVIEW"}'";
     else
       source .fzfguirc
 fi
