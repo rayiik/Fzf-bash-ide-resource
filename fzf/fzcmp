@@ -1,4 +1,4 @@
-#!/bin/bash !
+#!/usr/bin/env bash
 fzfcmp () {
     local term
     local FZF_DEFAULT_COMMAND

@@ -16,7 +16,10 @@
 #       CREATED: 08/01/2020 07:31:38 PM
 #      REVISION:  ---
 #===============================================================================
-# alt-e fzf command
+#-------------------------------------------------------------------------------
+# taken from bash completion not currently implamented as fztrim below produces
+# better results (short and long options)
+#-------------------------------------------------------------------------------
 dequote()
 {
     eval printf %s "$1" 2>/dev/null
@@ -28,7 +31,6 @@ quote()
 }
 _parse_help()
 {
-  _varset
     eval local cmd="$(quote "$_tvar")"
     local line
     {
@@ -84,15 +86,14 @@ __parse_options()
 }
 
 _fzcom () {
-# _varset
   fzf  \
       --ansi --phony \
       --preview="{ echo $_rlvar '{+}' 2>/dev/null; fline;  \
-      tput sgr0;  moreman $_tvar 2>/dev/null | \
-      rg -e '{q}' -C6 | \
+      tput sgr0; cat <({} --help 2>/dev/null)  <(moreman $_tvar 2>/dev/null) | \
+      rg -C6  -e {} | \
       rg  --no-filename \
       -C4  --no-line-number \
-      -e '{+}' -e '{}' 2>/dev/null; } " \
+      -e {+} -e {} 2>/dev/null; } " \
   --preview-window=right:65:wrap \
   --info=default \
   --bind='ctrl-a:preview-page-up' \
@@ -131,6 +132,8 @@ _fline () {
 _varset () {
 _tvar="$(awk -F ' ' '{print $NF}' <<<"$READLINE_LINE")"
 _rlvar="$READLINE_LINE"
+_endline="$(awk -F ' ' '{print $1}' <<<"$READLINE_LINE")"
+export _endline
 export _rlvar
 export _tvar
 }
@@ -139,11 +142,19 @@ export _tvar
 # fzf
 #-------------------------------------------------------------------------------
 rgt () {
- rg --ignore-case \
-  --color=ansi \
-  --no-filename \
-  --only-matching \
-  -e '-[-a-zA-Z0-9]*'
+rg --ignore-case \
+-e '^-[-a-zA-Z0-9]*' \
+-e '[ \s\t]-[-a-zA-Z0-9]*' \
+-e '^-[-a-zA-Z][0-9a-z]*' \
+-e '^-[a-zA-Z].' \
+-e '\s-[a-zA-Z].' \
+--only-matching \
+--no-filename | \
+sort -u | \
+sed -e 's/^--$//' | \
+sed -e 's/^-$//' | \
+sed -e 's/,//'
+
 }
 #
 ################################################################################
@@ -157,14 +168,17 @@ _fztrim() {
 _trimvar="$_tvar"
   { moreman "$_trimvar";"$_trimvar" --help; } | \
 rg --ignore-case \
--e '-[-a-zA-Z0-9]*' \
--e '-[-a-zA-Z][0-9a-z]*' \
--e '-[a-zA-Z].' \
+-e '^-[-a-zA-Z0-9]*' \
+-e '[ \s\t]-[-a-zA-Z0-9]*' \
+-e '^-[-a-zA-Z][0-9a-z]*' \
+-e '^-[a-zA-Z].' \
+-e '\s-[a-zA-Z].' \
 --only-matching \
 --no-filename | \
 sort -u | \
 sed -e 's/^--$//' | \
-sed -e 's/^-$//'
+sed -e 's/^-$//' | \
+sed -e 's/,//'
 }
 #
 ################################################################################
@@ -216,16 +230,11 @@ rh_com () {
 # this command populates a list with commands from $PATH
 #-------------------------------------------------------------------------------
 __coms_select__() {
-  local FZF_DEFAULT_OPTS
   local cmd="command __com1"
   eval "$cmd" | \
     sort -u | \
-        FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --bind='f4:execute({} --help; {}
-          | up)' --height 100% \
-    --reverse " "$(__fzfcmd)" \
-    -m "$@" --preview="moreman {} | rg -e '-[-a-zA-Z0-9]*\s' \
-      -e [A-Z][A-Z].*\s \
-      --passthru --no-filename" |\
+    $(__fzfcmd) \
+    -m --preview="moreman {} | rgt" | \
   while read -r item; do
     printf '%q ' "$item"
   done
@@ -260,7 +269,6 @@ done
 #-------------------------------------------------------------------------------
 #
 cmmd () {
-# _varset
 	"_coms_" | \
 		awk '{print $1}' | \
 		sort -u | \
@@ -299,7 +307,6 @@ __fzfcmd() {
 #-------------------------------------------------------------------------------
 #
 _cmf (){
-  _varset
 fzf \
   --ansi \
   --preview-window=right:65:wrap \
@@ -349,9 +356,7 @@ unset selected
 # calls commands and pipes them to fzf
 #-------------------------------------------------------------------------------
 _fini () {
-  _varset
-local _tvar
-cmmd | _cmf
+cmmd | rg "$_tvar" | _cmf
 }
 
 ################################################################################
@@ -372,39 +377,52 @@ fzf-coms-widget() {
 fini__ () {
 _varset
 _choice=$(_fini "$_rlvar")
+if [[ -n "$_choice" ]];
+        then
+            unset READLINE_LINE;
+            else
+                READLINE_LINE="$_tvar"
+                READLINE_POINT=0x7fffffff
+fi
 READLINE_LINE="$(echo -E "${_choice#*$' '}")"
 
 if [[ -n "$READLINE_LINE" ]]; then
   echo -E "$READLINE_LINE"; else
    READLINE_POINT=0x7fffffff
 fi
-fcomclean
 }
 #
 ################################################################################
 #-------------------------------------------------------------------------------
-#
+# not finished but populates commands based on path and on whats currently in
+# readline
 #-------------------------------------------------------------------------------
 #
-_varset "$READLINE_LINE"
-echo "$_tvar"
 bind -m vi-insert -x '"\ee":fini__'
 bind -m emacs -x '"\ee":fini__'
 #
 ################################################################################
+#-------------------------------------------------------------------------------
+#Displays flags and prints them to command line but doesnt execute
+#-------------------------------------------------------------------------------
 #
 bind -m vi-insert -x '"\eo":run-help'
 bind -m emacs -x '"\eo":run-help'
 #
 ################################################################################
-#
+#-------------------------------------------------------------------------------
+# mimics the zsh help fucntion pressing ctrl h opens manpage of word under
+# cursor
+#-------------------------------------------------------------------------------
 zsh-help() {
 help "$READLINE_LINE" 2>/dev/null || moreman "$READLINE_LINE"; }
 bind -m vi-insert -x '"\e\C-h": zsh-help'
 bind -m emacs -x     '"\e\C-h": zsh-help'
 
 ################################################################################
-# cusomt CTRL-E - paste from cmd function
+#-------------------------------------------------------------------------------
+# prints commands in path and prints the to command line without executing
+#-------------------------------------------------------------------------------
 #
   bind -m emacs-standard -x '"\C-e": fzf-coms-widget '
   bind -m vi-command -x '"\C-e": fzf-coms-widget '

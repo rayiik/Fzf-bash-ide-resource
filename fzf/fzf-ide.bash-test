@@ -129,7 +129,7 @@ _fline () {
 #-------------------------------------------------------------------------------
 #
 _varset () {
-_tvar="$(awk -F ' ' '{print $NF}' <<<"$READLINE_LINE")"
+    _tvar="$(awk -F ' ' '{print $NF}' <<<"$READLINE_LINE")"
 _rlvar="$READLINE_LINE"
 export _rlvar
 export _tvar
