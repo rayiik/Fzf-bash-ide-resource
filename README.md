@@ -50,5 +50,3 @@ heres a few demos in action but will update soon
 
 [![asciicast](https://asciinema.org/a/jkWUP3P8JXa5h36AK3aAGyxKo.svg)](https://asciinema.org/a/jkWUP3P8JXa5h36AK3aAGyxKo)
 
-
-[![asciicast](https://asciinema.org/a/3xRisYfiWCcuCfW01b3az8Pwl.svg)](https://asciinema.org/a/3xRisYfiWCcuCfW01b3az8Pwl)
