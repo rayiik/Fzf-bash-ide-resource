@@ -323,10 +323,20 @@ MANPATH=$MANPATH:$HOME/share/man
 cnat
 neofetch
 echo "$col4 testing display $nc"
-if [[ -z "$DISPLAY" ]]; then
- echo  "$col1 this is not xserver $nc"; else
-  echo "$col12 display is $DISPLAY xserver running $nc"
+if test -z "$DESKTOP_SESSION"; then
+ echo  "$col1 this is not xserver becuase \$DESKTOP_SESSION is unset $nc"; else
+  echo "$col12 display is "$DESKTOP_SESSION" running $nc"
 fi
+
+cdls() {
+        local dir="$1"
+        local dir="${dir:=$HOME}"
+        if [[ -d "$dir" ]]; then
+                cd "$dir" >/dev/null || return; ls --color=auto
+        else
+                echo "bash: cdls: $dir: Directory not found"
+        fi
+}
 
 ## help "$READLINE_LINE" 2>/dev/null || man "$READLINE_LINE"
 # mycroftboot
