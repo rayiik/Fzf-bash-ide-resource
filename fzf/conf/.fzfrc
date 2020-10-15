@@ -36,7 +36,7 @@ export FZF_DEFAULT_OPTS="$FZF_MOVEMENT \
 	--ansi"
 if [[ -z "$DISPLAY" ]]; then
   FZF_DEFAULT_OPTS+="
---color=info:1\
+--color=info:1 \
 --color=prompt:2 \
 --color=pointer:3 \
 --color=hl+:4 \
@@ -46,7 +46,6 @@ if [[ -z "$DISPLAY" ]]; then
 --color=border:9 \
 --color=hl:0 \
 --color=preview-fg:11 \
---color=preview-bg:12 \
 --color=fg:13 \
 --color=fg+:14 \
 --preview='${FZF_PREVIEW:+"cnat; $FZF_PREVIEW"}'";
