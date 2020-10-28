@@ -12,6 +12,10 @@ if test -f "$PGM"/fzf/conf/.fzf.bash; then
 . "$PGM"/fzf/conf/.fzf.bash; else
   echo "$col1 .fzf.bash not found $nc"
 fi
+if test -f "$PGCONF/.bash_aliases";
+        then
+            . "$PGCONF"/.bash_aliases
+fi
 appendpath () {
     case ":$PATH:" in
         *:"$1":*)

@@ -96,7 +96,7 @@ search=$(jq -r '.[] | "\(.name)|\(.version)|\(.description)"' <<< "$search" | co
 mapfile -t packages < <(fzf --multi \
   --bind='ctrl-x:toggle-preview' \
   --expect='ctrl-g,ctrl-d,enter,ctrl-v,esc' \
-  --preview-window='hidden:down' \
+  --preview-window='hidden:down:60%' \
   --preview="npm -s --json view {1} | jq -C \"del(.users, .time, .versions)\"" \
   --header='C-d saves as devDependency, C-g installs globally, C-v for specific version, C-x for more info, ' \
   <<< "$search")

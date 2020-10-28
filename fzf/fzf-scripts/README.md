@@ -27,7 +27,6 @@ Lists and searches for songs in an MPD library by artist, album, or playlist. I 
 ## [fzmv](fzmv)
 
 Interactively move files. It was originally just an experiment to see what it would be like to make a file explorer with fzf.
-
 ## fzrepl
 
 runs stdin against programs like sed, awk, jq and shows the result in the preview window
@@ -40,7 +39,7 @@ Google search from the command line. This is now broken since google deprecated 
 
 ## igr
 
-Interactive rg wrapper 
+Interactive rg wrapper
 
 ## [ix](ix)
 
@@ -60,11 +59,13 @@ Searches [npmjs.com](https://npmjs.com) and installs packages with `yarn` if ava
 
 Searches repos and installs multiple packages. Currently works with Debian, Ubuntu and Arch, and experimental support for Fedora and Void.
 
-## [pkgrm](pkgrm)
+# [pkgrm](pkgrm)
 
 Lists and removes packages, optionally sorts by size.
 
 *depends on `pacman`*
+
+[![asciicast](https://asciinema.org/a/HOMwFt7shskjb6WaHb733ZiGZ.svg)](https://asciinema.org/a/HOMwFt7shskjb6WaHb733ZiGZ)
 
 ## [sshget](sshget)
 

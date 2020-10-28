@@ -27,7 +27,6 @@ declare search_str=''
 declare search_cmd=''
 declare search_opts=()
 declare allfiles=''
-declare _rgf=( 'rg "$search_opts" | rg "$search_str"' )
 declare loop
 declare small
 declare -A colors
@@ -107,14 +106,14 @@ has -v 'fzf' || die
 if [[ -v FV_CMD ]]; then
   cmd="$FV_CMD"
 elif [[ -z "$cmd" ]]; then
-  cmd=$(select_from 'v' 'nvim')
+  cmd=$(select_from 'v' 'vim')
 fi
 
 
 if [[ -v FV_SEARCH ]]; then
   search_cmd="$FV_SEARCH"
 else
-  search_cmd=$(select_from 'rg' 'ag' 'ack' 'grep')
+  search_cmd=$(select_from 'ag' 'ack' 'grep')
 fi
 
 if [[ "$search_cmd"  == 'grep' ]]; then
@@ -132,15 +131,6 @@ if [[ -n "$1" ]]; then
 fi
 
 case "$search_cmd" in
-  'rg')
-    search_opts+=( '--pretty' --no-line-numbers )
-    if [[ -n "$allfiles" ]]; then
-      search_opts+=( '-uu' )
-    fi
-    if [[ "$search_str" == '' ]]; then
-      search_opt+=( '--files' ); else
-      search_opt+=( '"$_rgf' )
-    fi ;;
   'ag')
     search_opts+=( '--color' )
     if [[ -n "$allfiles" ]]; then

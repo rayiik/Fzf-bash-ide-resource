@@ -154,7 +154,6 @@ sort -u | \
 sed -e 's/^--$//' | \
 sed -e 's/^-$//' | \
 sed -e 's/,//'
-
 }
 #
 ################################################################################
@@ -234,7 +233,7 @@ __coms_select__() {
   eval "$cmd" | \
     sort -u | \
     $(__fzfcmd) \
-    -m --preview="moreman {} | rgt" | \
+    -m --preview="rgt <<<\$(moreman {})" | \
   while read -r item; do
     printf '%q ' "$item"
   done
@@ -324,9 +323,9 @@ fzf \
   --bind="alt-2:toggle+replace-query" \
   --bind="alt-3:execute(print {q})+refresh-preview" \
   --bind="alt-h:preview(moreman $_tvar)" \
-  --bind="f8:preview(moreman $_tvar | rgt)" \
-  --bind="f9:preview:'man $_tvar | rg {}'"\
-	--bind="ctrl-h:execute(moreman $_tvar)" \
+  --bind="f8:preview:moreman $_tvar | rgt" \
+  --bind="f9:preview:man $_tvar | rg {}"\
+	--bind="ctrl-h:execute:moreman $_tvar" \
   --layout=default \
 	--preview="moreman {} | rg --no-filename --passthru -e '-[a-zA-Z0-9]*'" \
   --bind='alt-r:reload(_flgswap)' \

@@ -1,0 +1,460 @@
+execve("/home/rayiik/project/Man-fzf-scripts/fzf/fzf-scripts/fv", ["fv"], 0x7ffc2fc65fd0 /* 110 vars */) = 0
+brk(NULL)                               = 0x555b07993000
+arch_prctl(0x3001 /* ARCH_??? */, 0x7ffcb4c719c0) = -1 EINVAL (Invalid argument)
+access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 4
+fstat(4, {st_mode=S_IFREG|0644, st_size=436794, ...}) = 0
+mmap(NULL, 436794, PROT_READ, MAP_PRIVATE, 4, 0) = 0x7fa9b6eb8000
+close(4)                                = 0
+openat(AT_FDCWD, "/usr/lib/libc.so.6", O_RDONLY|O_CLOEXEC) = 4
+read(4, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\220\202\2\0\0\0\0\0"..., 832) = 832
+pread64(4, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+pread64(4, "\4\0\0\0\20\0\0\0\5\0\0\0GNU\0\2\0\0\300\4\0\0\0\3\0\0\0\0\0\0\0", 32, 848) = 32
+pread64(4, "\4\0\0\0\24\0\0\0\3\0\0\0GNU\0\364[g\253(\257\25\201\313\250\344q>\17\323\262"..., 68, 880) = 68
+fstat(4, {st_mode=S_IFREG|0755, st_size=2159552, ...}) = 0
+mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fa9b6eb6000
+pread64(4, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+mmap(NULL, 1868448, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 4, 0) = 0x7fa9b6ced000
+mmap(0x7fa9b6d13000, 1363968, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 4, 0x26000) = 0x7fa9b6d13000
+mmap(0x7fa9b6e60000, 311296, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 4, 0x173000) = 0x7fa9b6e60000
+mmap(0x7fa9b6eac000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 4, 0x1be000) = 0x7fa9b6eac000
+mmap(0x7fa9b6eb2000, 12960, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7fa9b6eb2000
+close(4)                                = 0
+mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fa9b6ceb000
+arch_prctl(ARCH_SET_FS, 0x7fa9b6eb75c0) = 0
+mprotect(0x7fa9b6eac000, 12288, PROT_READ) = 0
+mprotect(0x555b05b6d000, 4096, PROT_READ) = 0
+mprotect(0x7fa9b6f4f000, 4096, PROT_READ) = 0
+munmap(0x7fa9b6eb8000, 436794)          = 0
+brk(NULL)                               = 0x555b07993000
+brk(0x555b079b4000)                     = 0x555b079b4000
+openat(AT_FDCWD, "/usr/lib/locale/locale-archive", O_RDONLY|O_CLOEXEC) = 4
+fstat(4, {st_mode=S_IFREG|0644, st_size=3041456, ...}) = 0
+mmap(NULL, 3041456, PROT_READ, MAP_PRIVATE, 4, 0) = 0x7fa9b6a04000
+close(4)                                = 0
+execve("/bin/bash", ["bash", "/home/rayiik/project/Man-fzf-scr"...], 0x7ffcb4c71ab8 /* 110 vars */) = 0
+brk(NULL)                               = 0x5628f96d9000
+arch_prctl(0x3001 /* ARCH_??? */, 0x7ffda6f2ab50) = -1 EINVAL (Invalid argument)
+access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 4
+fstat(4, {st_mode=S_IFREG|0644, st_size=436794, ...}) = 0
+mmap(NULL, 436794, PROT_READ, MAP_PRIVATE, 4, 0) = 0x7f98374ab000
+close(4)                                = 0
+openat(AT_FDCWD, "/usr/lib/libreadline.so.8", O_RDONLY|O_CLOEXEC) = 4
+read(4, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0 `\1\0\0\0\0\0"..., 832) = 832
+fstat(4, {st_mode=S_IFREG|0755, st_size=326416, ...}) = 0
+mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f98374a9000
+mmap(NULL, 334344, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 4, 0) = 0x7f9837457000
+mmap(0x7f983746d000, 163840, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 4, 0x16000) = 0x7f983746d000
+mmap(0x7f9837495000, 40960, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 4, 0x3e000) = 0x7f9837495000
+mmap(0x7f983749f000, 36864, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 4, 0x47000) = 0x7f983749f000
+mmap(0x7f98374a8000, 2568, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7f98374a8000
+close(4)                                = 0
+openat(AT_FDCWD, "/usr/lib/libdl.so.2", O_RDONLY|O_CLOEXEC) = 4
+read(4, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\20\22\0\0\0\0\0\0"..., 832) = 832
+fstat(4, {st_mode=S_IFREG|0755, st_size=18608, ...}) = 0
+mmap(NULL, 20624, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 4, 0) = 0x7f9837451000
+mmap(0x7f9837452000, 8192, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 4, 0x1000) = 0x7f9837452000
+mmap(0x7f9837454000, 4096, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 4, 0x3000) = 0x7f9837454000
+mmap(0x7f9837455000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 4, 0x3000) = 0x7f9837455000
+close(4)                                = 0
+openat(AT_FDCWD, "/usr/lib/libc.so.6", O_RDONLY|O_CLOEXEC) = 4
+read(4, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\220\202\2\0\0\0\0\0"..., 832) = 832
+pread64(4, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+pread64(4, "\4\0\0\0\20\0\0\0\5\0\0\0GNU\0\2\0\0\300\4\0\0\0\3\0\0\0\0\0\0\0", 32, 848) = 32
+pread64(4, "\4\0\0\0\24\0\0\0\3\0\0\0GNU\0\364[g\253(\257\25\201\313\250\344q>\17\323\262"..., 68, 880) = 68
+fstat(4, {st_mode=S_IFREG|0755, st_size=2159552, ...}) = 0
+pread64(4, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+mmap(NULL, 1868448, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 4, 0) = 0x7f9837288000
+mmap(0x7f98372ae000, 1363968, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 4, 0x26000) = 0x7f98372ae000
+mmap(0x7f98373fb000, 311296, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 4, 0x173000) = 0x7f98373fb000
+mmap(0x7f9837447000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 4, 0x1be000) = 0x7f9837447000
+mmap(0x7f983744d000, 12960, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7f983744d000
+close(4)                                = 0
+openat(AT_FDCWD, "/usr/lib/libncursesw.so.6", O_RDONLY|O_CLOEXEC) = 4
+read(4, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0 p\1\0\0\0\0\0"..., 832) = 832
+fstat(4, {st_mode=S_IFREG|0755, st_size=457736, ...}) = 0
+mmap(NULL, 462072, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 4, 0) = 0x7f9837217000
+mmap(0x7f983722e000, 245760, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 4, 0x17000) = 0x7f983722e000
+mmap(0x7f983726a000, 98304, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 4, 0x53000) = 0x7f983726a000
+mmap(0x7f9837282000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 4, 0x6a000) = 0x7f9837282000
+close(4)                                = 0
+mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f9837215000
+arch_prctl(ARCH_SET_FS, 0x7f9837215b80) = 0
+mprotect(0x7f9837447000, 12288, PROT_READ) = 0
+mprotect(0x7f9837282000, 20480, PROT_READ) = 0
+mprotect(0x7f9837455000, 4096, PROT_READ) = 0
+mprotect(0x7f983749f000, 12288, PROT_READ) = 0
+mprotect(0x5628f8d6b000, 12288, PROT_READ) = 0
+mprotect(0x7f9837542000, 4096, PROT_READ) = 0
+munmap(0x7f98374ab000, 436794)          = 0
+openat(AT_FDCWD, "/dev/tty", O_RDWR|O_NONBLOCK) = 4
+close(4)                                = 0
+brk(NULL)                               = 0x5628f96d9000
+brk(0x5628f96fa000)                     = 0x5628f96fa000
+openat(AT_FDCWD, "/usr/lib/locale/locale-archive", O_RDONLY|O_CLOEXEC) = 4
+fstat(4, {st_mode=S_IFREG|0644, st_size=3041456, ...}) = 0
+mmap(NULL, 3041456, PROT_READ, MAP_PRIVATE, 4, 0) = 0x7f9836f2e000
+close(4)                                = 0
+openat(AT_FDCWD, "/usr/lib/gconv/gconv-modules.cache", O_RDONLY) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/lib/gconv/gconv-modules", O_RDONLY|O_CLOEXEC) = 4
+fstat(4, {st_mode=S_IFREG|0644, st_size=56353, ...}) = 0
+read(4, "# GNU libc iconv configuration.\n"..., 4096) = 4096
+read(4, "B1002//\tJUS_I.B1.002//\nmodule\tJU"..., 4096) = 4096
+read(4, "\tISO-IR-110//\t\tISO-8859-4//\nalia"..., 4096) = 4096
+read(4, "\t\t\tISO-8859-14//\nalias\tISO_8859-"..., 4096) = 4096
+read(4, "DIC-ES//\nalias\tEBCDICES//\t\tEBCDI"..., 4096) = 4096
+read(4, "CDIC-CP-ES//\t\tIBM284//\nalias\tCSI"..., 4096) = 4096
+read(4, "\t\tIBM863//\nalias\tOSF1002035F//\t\t"..., 4096) = 4096
+read(4, "937//\t\tIBM937//\nmodule\tIBM937//\t"..., 4096) = 4096
+read(4, "UJIS//\t\t\tEUC-JP//\nmodule\tEUC-JP/"..., 4096) = 4096
+read(4, "lias\tISO2022CN//\t\tISO-2022-CN//\n"..., 4096) = 4096
+read(4, "O_5427-EXT//\nalias\tISO_5427EXT//"..., 4096) = 4096
+read(4, "ost\nmodule\tMAC-SAMI//\t\tINTERNAL\t"..., 4096) = 4096
+read(4, "112//\t\tINTERNAL\t\tIBM1112\t\t1\nmodu"..., 4096) = 4096
+brk(0x5628f971b000)                     = 0x5628f971b000
+read(4, "s\tCP9448//\t\tIBM9448//\nalias\tCSIB"..., 4096) = 3105
+read(4, "", 4096)                       = 0
+close(4)                                = 0
+getuid()                                = 1000
+getgid()                                = 1000
+geteuid()                               = 1000
+getegid()                               = 1000
+rt_sigprocmask(SIG_BLOCK, NULL, [], 8)  = 0
+ioctl(-1, TIOCGPGRP, 0x7ffda6f2a9a4)    = -1 EBADF (Bad file descriptor)
+sysinfo({uptime=3959, loads=[16576, 10272, 13696], totalram=67292008448, freeram=62991171584, sharedram=76435456, bufferram=1110122496, totalswap=9485414400, freeswap=9485414400, procs=388, totalhigh=0, freehigh=0, mem_unit=1}) = 0
+rt_sigaction(SIGCHLD, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7f98372c56a0}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=0}, 8) = 0
+rt_sigaction(SIGCHLD, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7f98372c56a0}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7f98372c56a0}, 8) = 0
+rt_sigaction(SIGINT, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=0}, 8) = 0
+rt_sigaction(SIGINT, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, 8) = 0
+rt_sigaction(SIGQUIT, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=0}, 8) = 0
+rt_sigaction(SIGQUIT, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, 8) = 0
+rt_sigaction(SIGTSTP, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=0}, 8) = 0
+rt_sigaction(SIGTSTP, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, 8) = 0
+rt_sigaction(SIGTTIN, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=0}, 8) = 0
+rt_sigaction(SIGTTIN, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, 8) = 0
+rt_sigaction(SIGTTOU, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=0}, 8) = 0
+rt_sigaction(SIGTTOU, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, 8) = 0
+rt_sigprocmask(SIG_BLOCK, NULL, [], 8)  = 0
+rt_sigaction(SIGQUIT, {sa_handler=SIG_IGN, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, 8) = 0
+uname({sysname="Linux", nodename="Darch", ...}) = 0
+stat("/home/rayiik/project/Man-fzf-scripts/fzf/fzf-scripts", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+stat(".", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+stat("/home", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+stat("/home/rayiik", {st_mode=S_IFDIR|0700, st_size=12288, ...}) = 0
+stat("/home/rayiik/project", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+stat("/home/rayiik/project/Man-fzf-scripts", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+stat("/home/rayiik/project/Man-fzf-scripts/fzf", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+stat("/home/rayiik/project/Man-fzf-scripts/fzf/fzf-scripts", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+stat("/home/rayiik/project/Man-fzf-scripts/fzf", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+getpid()                                = 28011
+getppid()                               = 28008
+stat(".", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+stat("/bin/bash", {st_mode=S_IFREG|0755, st_size=928016, ...}) = 0
+stat("/bin/bash", {st_mode=S_IFREG|0755, st_size=928016, ...}) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/bin/bash", X_OK)               = 0
+stat("/bin/bash", {st_mode=S_IFREG|0755, st_size=928016, ...}) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/bin/bash", R_OK)               = 0
+stat("/bin/bash", {st_mode=S_IFREG|0755, st_size=928016, ...}) = 0
+stat("/bin/bash", {st_mode=S_IFREG|0755, st_size=928016, ...}) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/bin/bash", X_OK)               = 0
+stat("/bin/bash", {st_mode=S_IFREG|0755, st_size=928016, ...}) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/bin/bash", R_OK)               = 0
+getpid()                                = 28011
+getpgrp()                               = 28008
+ioctl(2, TIOCGPGRP, 0x7ffda6f2a864)     = -1 ENOTTY (Inappropriate ioctl for device)
+rt_sigaction(SIGCHLD, {sa_handler=0x5628f8cdc5a0, sa_mask=[], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7f98372c56a0}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7f98372c56a0}, 8) = 0
+ioctl(2, TIOCGPGRP, 0x7ffda6f2a844)     = -1 ENOTTY (Inappropriate ioctl for device)
+prlimit64(0, RLIMIT_NPROC, NULL, {rlim_cur=256532, rlim_max=256532}) = 0
+rt_sigprocmask(SIG_BLOCK, NULL, [], 8)  = 0
+openat(AT_FDCWD, "/home/rayiik/project/Man-fzf-scripts/fzf/fzf-scripts/fv", O_RDONLY) = 4
+stat("/home/rayiik/project/Man-fzf-scripts/fzf/fzf-scripts/fv", {st_mode=S_IFREG|0755, st_size=4494, ...}) = 0
+ioctl(4, TCGETS, 0x7ffda6f2a930)        = -1 ENOTTY (Inappropriate ioctl for device)
+lseek(4, 0, SEEK_CUR)                   = 0
+read(4, "#!/usr/bin/env bash\n\nusage() {\n "..., 80) = 80
+lseek(4, 0, SEEK_SET)                   = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=1024, rlim_max=512*1024}) = 0
+fcntl(255, F_GETFD)                     = -1 EBADF (Bad file descriptor)
+dup2(4, 255)                            = 255
+close(4)                                = 0
+fcntl(255, F_SETFD, FD_CLOEXEC)         = 0
+fcntl(255, F_GETFL)                     = 0x8000 (flags O_RDONLY|O_LARGEFILE)
+fstat(255, {st_mode=S_IFREG|0755, st_size=4494, ...}) = 0
+lseek(255, 0, SEEK_CUR)                 = 0
+read(255, "#!/usr/bin/env bash\n\nusage() {\n "..., 4494) = 4494
+rt_sigprocmask(SIG_BLOCK, NULL, [], 8)  = 0
+pipe([4, 5])                            = 0
+rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+rt_sigprocmask(SIG_BLOCK, [INT CHLD], [], 8) = 0
+lseek(255, -3748, SEEK_CUR)             = 746
+clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x7f9837215e50) = 28012
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+rt_sigaction(SIGCHLD, {sa_handler=0x5628f8cdc5a0, sa_mask=[], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7f98372c56a0}, {sa_handler=0x5628f8cdc5a0, sa_mask=[], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7f98372c56a0}, 8) = 0
+close(5)                                = 0
+read(4, "\33[31m", 128)                 = 5
+--- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=28012, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], WNOHANG, NULL) = 28012
+wait4(-1, 0x7ffda6f29cd0, WNOHANG, NULL) = -1 ECHILD (No child processes)
+rt_sigreturn({mask=[]})                 = 5
+read(4, "", 128)                        = 0
+close(4)                                = 0
+rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+rt_sigaction(SIGINT, {sa_handler=0x5628f8cd9aa0, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, 8) = 0
+rt_sigaction(SIGINT, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, {sa_handler=0x5628f8cd9aa0, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, 8) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+read(255, "colors[green]=$(tput setaf 2)\nco"..., 4494) = 3748
+rt_sigprocmask(SIG_BLOCK, NULL, [], 8)  = 0
+pipe([4, 5])                            = 0
+rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+rt_sigprocmask(SIG_BLOCK, [INT CHLD], [], 8) = 0
+lseek(255, -3718, SEEK_CUR)             = 776
+clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x7f9837215e50) = 28013
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+rt_sigaction(SIGCHLD, {sa_handler=0x5628f8cdc5a0, sa_mask=[], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7f98372c56a0}, {sa_handler=0x5628f8cdc5a0, sa_mask=[], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7f98372c56a0}, 8) = 0
+close(5)                                = 0
+read(4, "\33[32m", 128)                 = 5
+read(4, "", 128)                        = 0
+--- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=28013, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], WNOHANG, NULL) = 28013
+wait4(-1, 0x7ffda6f29cd0, WNOHANG, NULL) = -1 ECHILD (No child processes)
+rt_sigreturn({mask=[]})                 = 0
+close(4)                                = 0
+rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+rt_sigaction(SIGINT, {sa_handler=0x5628f8cd9aa0, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, 8) = 0
+rt_sigaction(SIGINT, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, {sa_handler=0x5628f8cd9aa0, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, 8) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+read(255, "colors[blue]=$(tput setaf 4)\ncol"..., 4494) = 3718
+rt_sigprocmask(SIG_BLOCK, NULL, [], 8)  = 0
+pipe([4, 5])                            = 0
+rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+rt_sigprocmask(SIG_BLOCK, [INT CHLD], [], 8) = 0
+lseek(255, -3689, SEEK_CUR)             = 805
+clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x7f9837215e50) = 28014
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+rt_sigaction(SIGCHLD, {sa_handler=0x5628f8cdc5a0, sa_mask=[], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7f98372c56a0}, {sa_handler=0x5628f8cdc5a0, sa_mask=[], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7f98372c56a0}, 8) = 0
+close(5)                                = 0
+read(4, "\33[34m", 128)                 = 5
+read(4, "", 128)                        = 0
+--- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=28014, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], WNOHANG, NULL) = 28014
+wait4(-1, 0x7ffda6f29cd0, WNOHANG, NULL) = -1 ECHILD (No child processes)
+rt_sigreturn({mask=[]})                 = 0
+close(4)                                = 0
+rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+rt_sigaction(SIGINT, {sa_handler=0x5628f8cd9aa0, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, 8) = 0
+rt_sigaction(SIGINT, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, {sa_handler=0x5628f8cd9aa0, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, 8) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+read(255, "colors[reset]=$(tput sgr0)\n\ncolo"..., 4494) = 3689
+rt_sigprocmask(SIG_BLOCK, NULL, [], 8)  = 0
+pipe([4, 5])                            = 0
+rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+rt_sigprocmask(SIG_BLOCK, [INT CHLD], [], 8) = 0
+lseek(255, -3662, SEEK_CUR)             = 832
+clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x7f9837215e50) = 28015
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+rt_sigaction(SIGCHLD, {sa_handler=0x5628f8cdc5a0, sa_mask=[], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7f98372c56a0}, {sa_handler=0x5628f8cdc5a0, sa_mask=[], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7f98372c56a0}, 8) = 0
+close(5)                                = 0
+read(4, "\33(B\33[m", 128)              = 6
+read(4, "", 128)                        = 0
+--- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=28015, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], WNOHANG, NULL) = 28015
+wait4(-1, 0x7ffda6f29cd0, WNOHANG, NULL) = -1 ECHILD (No child processes)
+rt_sigreturn({mask=[]})                 = 0
+close(4)                                = 0
+rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+rt_sigaction(SIGINT, {sa_handler=0x5628f8cd9aa0, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, 8) = 0
+rt_sigaction(SIGINT, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, {sa_handler=0x5628f8cd9aa0, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, 8) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+read(255, "\ncolor() {\n  local c\n  c=\"$1\"\n  "..., 4494) = 3662
+brk(0x5628f973c000)                     = 0x5628f973c000
+openat(AT_FDCWD, "/dev/null", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 4
+fcntl(1, F_GETFD)                       = 0
+fcntl(1, F_DUPFD, 10)                   = 10
+fcntl(1, F_GETFD)                       = 0
+fcntl(10, F_SETFD, FD_CLOEXEC)          = 0
+dup2(4, 1)                              = 1
+close(4)                                = 0
+fcntl(2, F_DUPFD, 10)                   = 11
+fcntl(2, F_GETFD)                       = 0
+fcntl(11, F_SETFD, FD_CLOEXEC)          = 0
+dup2(1, 2)                              = 2
+stat(".", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+stat("/bin/fzf", {st_mode=S_IFREG|0755, st_size=3150688, ...}) = 0
+stat("/bin/fzf", {st_mode=S_IFREG|0755, st_size=3150688, ...}) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/bin/fzf", X_OK)                = 0
+stat("/bin/fzf", {st_mode=S_IFREG|0755, st_size=3150688, ...}) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/bin/fzf", R_OK)                = 0
+stat("/bin/fzf", {st_mode=S_IFREG|0755, st_size=3150688, ...}) = 0
+stat("/bin/fzf", {st_mode=S_IFREG|0755, st_size=3150688, ...}) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/bin/fzf", X_OK)                = 0
+stat("/bin/fzf", {st_mode=S_IFREG|0755, st_size=3150688, ...}) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/bin/fzf", R_OK)                = 0
+fstat(1, {st_mode=S_IFCHR|0666, st_rdev=makedev(0x1, 0x3), ...}) = 0
+ioctl(1, TCGETS, 0x7ffda6f29c60)        = -1 ENOTTY (Inappropriate ioctl for device)
+write(1, "/bin/fzf\n", 9)               = 9
+dup2(11, 2)                             = 2
+fcntl(11, F_GETFD)                      = 0x1 (flags FD_CLOEXEC)
+close(11)                               = 0
+dup2(10, 1)                             = 1
+fcntl(10, F_GETFD)                      = 0x1 (flags FD_CLOEXEC)
+close(10)                               = 0
+rt_sigprocmask(SIG_BLOCK, NULL, [], 8)  = 0
+pipe([4, 5])                            = 0
+rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+rt_sigprocmask(SIG_BLOCK, [INT CHLD], [], 8) = 0
+lseek(255, -2520, SEEK_CUR)             = 1974
+clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x7f9837215e50) = 28016
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+rt_sigaction(SIGCHLD, {sa_handler=0x5628f8cdc5a0, sa_mask=[], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7f98372c56a0}, {sa_handler=0x5628f8cdc5a0, sa_mask=[], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7f98372c56a0}, 8) = 0
+close(5)                                = 0
+read(4, "nvim\n", 128)                  = 5
+read(4, "", 128)                        = 0
+--- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=28016, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], WNOHANG, NULL) = 28016
+wait4(-1, 0x7ffda6f29a90, WNOHANG, NULL) = -1 ECHILD (No child processes)
+rt_sigreturn({mask=[]})                 = 0
+close(4)                                = 0
+rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+rt_sigaction(SIGINT, {sa_handler=0x5628f8cd9aa0, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, 8) = 0
+rt_sigaction(SIGINT, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, {sa_handler=0x5628f8cd9aa0, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, 8) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+read(255, "\n\nif [[ -v FV_SEARCH ]]; then\n  "..., 4494) = 2520
+rt_sigprocmask(SIG_BLOCK, NULL, [], 8)  = 0
+pipe([4, 5])                            = 0
+rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+rt_sigprocmask(SIG_BLOCK, [INT CHLD], [], 8) = 0
+lseek(255, -2405, SEEK_CUR)             = 2089
+clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x7f9837215e50) = 28017
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+rt_sigaction(SIGCHLD, {sa_handler=0x5628f8cdc5a0, sa_mask=[], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7f98372c56a0}, {sa_handler=0x5628f8cdc5a0, sa_mask=[], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7f98372c56a0}, 8) = 0
+close(5)                                = 0
+read(4, "rg\n", 128)                    = 3
+read(4, "", 128)                        = 0
+--- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=28017, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], WNOHANG, NULL) = 28017
+wait4(-1, 0x7ffda6f29b90, WNOHANG, NULL) = -1 ECHILD (No child processes)
+rt_sigreturn({mask=[]})                 = 0
+close(4)                                = 0
+rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+rt_sigaction(SIGINT, {sa_handler=0x5628f8cd9aa0, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, 8) = 0
+rt_sigaction(SIGINT, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, {sa_handler=0x5628f8cd9aa0, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, 8) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+read(255, "\nif [[ \"$search_cmd\"  == 'grep' "..., 4494) = 2405
+rt_sigprocmask(SIG_BLOCK, NULL, [], 8)  = 0
+pipe([4, 5])                            = 0
+rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+rt_sigprocmask(SIG_BLOCK, [INT CHLD], [], 8) = 0
+clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x7f9837215e50) = 28018
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+rt_sigaction(SIGCHLD, {sa_handler=0x5628f8cdc5a0, sa_mask=[], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7f98372c56a0}, {sa_handler=0x5628f8cdc5a0, sa_mask=[], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7f98372c56a0}, 8) = 0
+close(5)                                = 0
+read(4, "bat --color=always --style=heade"..., 128) = 34
+read(4, "", 128)                        = 0
+--- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=28018, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], WNOHANG, NULL) = 28018
+wait4(-1, 0x7ffda6f291d0, WNOHANG, NULL) = -1 ECHILD (No child processes)
+rt_sigreturn({mask=[]})                 = 0
+close(4)                                = 0
+rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+rt_sigaction(SIGINT, {sa_handler=0x5628f8cd9aa0, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, 8) = 0
+rt_sigaction(SIGINT, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, {sa_handler=0x5628f8cd9aa0, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, 8) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+rt_sigprocmask(SIG_BLOCK, NULL, [], 8)  = 0
+pipe([4, 5])                            = 0
+rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+rt_sigprocmask(SIG_BLOCK, [INT CHLD], [], 8) = 0
+clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x7f9837215e50) = 28019
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+rt_sigaction(SIGCHLD, {sa_handler=0x5628f8cdc5a0, sa_mask=[], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7f98372c56a0}, {sa_handler=0x5628f8cdc5a0, sa_mask=[], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7f98372c56a0}, 8) = 0
+close(5)                                = 0
+read(4, [J[6n
+[G
+[G
+[G
+[G
+[G
+[G
+[G
+[G
+[G
+[G
+[G
+[G
+[G
+[G
+[G
+[G
+[G
+[G
+[G
+[G
+[G
+[G
+[G
+[G
+[G
+[G
+[G
+[G
+[G
+[G
+[G
+[G
+[G
+[G
+[G
+[G
+[G[37A[G[K[65C[;38;5;59m╭──────────────────────────────────────────────────────────────────────╮[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m│[m[;38;5;59m                                                                      [m[;38;5;59m│[m[1B[65C[;38;5;59m╰──────────────────────────────────────────────────────────────────────╯[m[37A[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [1B[;m                                                                 [37A[;m                                                                 [;1;38;5;110m> [m[;1m[m[;1m[m[3C[;m                                                              [3C[;1;38;5;110m < [m[;38;5;144m0/0 +S[m[2C[3C[;m                                                              [3C[;1;38;5;110m < [m[;38;5;144m0/0 +S[m[2C[1B[67C[67C[;m[67C[67C[;m                                                                    [67C[1B[67C[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[36A[2C[2C[1B[67C[67C[;m[67C[67C[;m                                                                    [67C[1B[67C[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[1B[67C[;m                                                                    [67C[36A[2C[J"", 128)                        = 0
+--- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=28019, si_uid=1000, si_status=1, si_utime=0, si_stime=0} ---
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 1}], WNOHANG, NULL) = 28019
+wait4(-1, 0x7ffda6f291d0, WNOHANG, NULL) = -1 ECHILD (No child processes)
+rt_sigreturn({mask=[]})                 = 0
+close(4)                                = 0
+rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+rt_sigaction(SIGINT, {sa_handler=0x5628f8cd9aa0, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, 8) = 0
+rt_sigaction(SIGINT, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, {sa_handler=0x5628f8cd9aa0, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f98372c56a0}, 8) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+exit_group(1)                           = ?
++++ exited with 1 +++
