@@ -1,0 +1,73 @@
+#version:1.5
+#lang:en_US.UTF-8
+#screenWidth:1920
+#screenHeight:1080
+#head end
+title-font: "Hack Bold Italic 24"
+title-color: "crimson"
+title-text: "Rayiik Solutions"
+desktop-image: "background.png"
+desktop-color: "#000000"
+terminal-font: "Hack Bold Italic 24"
+terminal-box: "tbox_*.png"
+terminal-left: "0"
+terminal-top: "0"
+terminal-width: "100%"
+terminal-height: "100%"
+#terminal-border: "0"
++ boot_menu {
+    top = 10%
+    width = 100%
+    height = 80%
+    item_font = "Hack Bold Italic 24"
+    item_color = "#ff6200"
+    selected_item_color = "#ff0000"
+    item_height = 35
+    item_spacing = 3
+    item_padding = 3
+    icon_width = 39
+    icon_height = 39
+    item_icon_space = 7
+    selected_item_pixmap_style = "highlight_*.png"
+    menu_pixmap_style = "menu_frame_*.png"
+    scrollbar = true
+    scrollbar_thumb = "scrollbar_rthumb_*.png"
+    scrollbar_frame = "scrollbar_thumb_*.png"
+    scrollbar_width = 15
+}
+
+# progress bar
++ progress_bar {
+    id = "__timeout__"
+    left = 16%
+    width = 80%
+    top = 90%
+    height = 65
+    show_text = true
+    font = "Hack Bold Italic 24"
+    text_color = "#ff0022"
+    text = "@TIMEOUT_NOTIFICATION_MIDDLE@"
+    bar_style = "progress_frame2_*.png"
+    highlight_style = "progress_highlight_*.png"
+    overlay_style = true
+}
++ label {
+    left = 0
+    top = 98%
+    width = 100%
+    align = "center"
+    id = "__timeout__"
+    color = "cyan"
+    font = "Hack Bold Italic 24"
+    text = "Booting in %d seconds"
+}
++ label {
+    left = 0
+    top = 96%
+    width = 100%
+    align = "center"
+    color = "cyan"
+    font = "Hack Bold Italic 24"
+    text = "Use ↑ and ↓ keys to change selection, Enter to confirm, E to edit the commands before booting or C for a command-line"
+}
+
