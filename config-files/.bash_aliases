@@ -1,37 +1,104 @@
 #!/usr/bin/env bash
 #alias
-alias pacup="sudo pacman -Syyu --needed --noconfirm | tee -a /home/rayiik/tmp/pacup.tmp | \
-  colorize || exit 2 "
-  alias fdm="findmnt"
-alias python='python3'
-alias mkpkg='makepkg -si | tee >./pkglog | colorize'
-alias rm="rm -I"
-alias mv='mv -I'
-echo 'this is bash aliases'
-alias findmnt='findmnt | colorize'
-alias cp='cp -i'
-alias fd='fd --color=always'
+
+
+
+
+#-------------------------------------------------------------------------------
+#functions
+#-------------------------------------------------------------------------------
+cd () {
+        local dir="$1"
+        if [[ "$dir" == '-' ]];
+        then dir="$OLDPWD"
+        fi
+        local dir="${dir:=$HOME}"
+        if [[ -d "$dir" ]]; then
+             builtin 'cd' "$dir" >/dev/null || return;
+        else
+                echo "bash: cdls: $dir: Directory not found"
+        fi
+}
+#             if [[ "$(ls --color=auto | wc -l)" -gt 100 ]]; then
+#                        PS3="output is really long view anyways? y/n::"
+#                        select chocie in y n;
+#                        do
+#                            if [[ "$choice" == 'y' ]];
+#                            then
+#                                [[ "$(ls --color=always --group-directories-first)" ]] && exit 0;
+#                            elif
+#                            [[ "$choice" == 'n' ]];
+#                        then
+#                                       echo "currently in $PWD" && exit 3
+#                            fi
+#                                    done
+#
+#                                    fi;
+#
+pacup () {
+sudo pacman -Syyu \
+    --needed --noconfirm | \
+    tee -a /home/rayiik/tmp/pacup.tmp | \
+  colorize || return 1
+}
+
 pacfunc () {
 
   IFS=$'\n'
   for line in $(makepkg -si | tee -a &>./pkglog 2>/dev/null 1>/dev/stdout); do
    for word in $line; do
      if [[ "$word" == 'error' ]]; then
-       printf '%s' "${word//$red $word $nc/} 2>&1 "; elif
+       printf '%s' "${word//$col1 $word $nc/} 2>&1 "; elif
        [[ "$word" == 'warning' ]]; then
-    printf '%s' "${word//$magenta $word $nc/} 2>&1 "; elif
+    printf '%s' "${word//$col8 $word $nc/} 2>&1 "; elif
         [[ "$word" == 'no' ]]; then
-    "${word//$blue $word $nc/}"; else
+    "${word//$col3 $word $nc/}"; else
     printf '%s' "$word"
      fi
    done
  done
 }
-alias pip='pip3'
+gimp () {
+    gimp "$1" && disown -a &
+}
+
+
+#-------------------------------------------------------------------------------
+# conditional aliases
+#-------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+#-------------------------------------------------------------------------------
+# aliase s
+#-------------------------------------------------------------------------------
+
+alias fdm="findmnt"
+alias python='python3'
+alias mkpkg='makepkg -si | tee >./pkglog | colorize'
+alias rm="rm -I"
+alias mv='mv -I'
+alias ffox='firefox && disown -a &'
+alias tbird='thunderbird && disown -a &'
+echo 'this is bash aliases'
+alias findmnt='findmnt | colorize'
+alias gparted='sudo gparted && disown -a &'
+alias cp='cp -i'
+alias fd='fd --color=always'
+alias pip='python3 -m pip'
 alias mycs='mycroft-start'
 alias mpkg='makepkg -si | colorize | tee -a ./pkglog'
+
 alias info='info --vi-keys'
 alias cdm='cd /home/rayiik/project/Man-fzf-scripts'
+alias nr='nvidia-xrun'
 alias nvp='nvimpager'
 alias wcl='wl-clip'
 alias wcp='wl-copy'
@@ -57,7 +124,7 @@ alias vi='vim'
 alias shred='shred -zf'
 alias lsd='lsd -a'
 alias vm='nvim'
-alias l='lsd -aF --color=auto'
+alias l="\$HOME/.cargo/bin/ls -aF --color=auto"
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
 alias grep='grep --color=auto'
@@ -66,7 +133,7 @@ alias cdbf='cd /home/rayiik/coms/scripts/'
 alias pacman-rem='sudo pacman -R --unneeded --recursive --nosave --color=always'
 alias pacman-find='sudo pacman -Qiqe >> packages'
 alias ls='ls -A -F --color=always --group-directories-first'
-alias lla='exa -A -F'
+alias lla='exa -F'
 alias reflector='sudo reflector --sort rate --latest 20  --save /etc/pacman.d/mirrorlist'
 alias ps1='ps -e | fzf | rg '
 alias vdir='vdir --color=auto'
@@ -117,6 +184,7 @@ alias unlink='uu-unlink '
 alias stx='unset DISPLAY; startxfce4'
 alias users='uu-users'
 alias comc='compgen -c'
+alias cl='dls'
 alias wc='uu-wc'
 alias who="uu-who"
 alias whoami='uu-whoami | colorize'
@@ -126,14 +194,11 @@ alias ll='lsd -laF --color=auto'
 alias di='pyls'
 alias bat1='bat --color=always --theme=solarized-light'
 alias pacsc='sudo pacman -Slq | fzf -m --preview pacman -Si {1} | xargs -ro sudo pacman -S'
-# alias coms='sh ~/.scripts/func/fini/coms.sh'
 alias comc='compgen -c'
-# alias awk2="awk 'seen [$0]++'"
 alias ...='zd ..'
 alias cd1='cd /home/rayiik/coms/scripts/; ls -a'
 alias cd2='cd /home/rayiik/fzfscripts; ls -a'
 alias fdl='fdisk -l | colorize'
-
-# alias coms='sh ~/.scripts/func/fini/coms.sh'
 alias sssid='sudo iw dev wlo1 scan | rg -C0 --no-filename SSID: | sort -u'
 alias shf='ssh rayiik@192.168.1.225'
+alias nx='unset DISPLAY; nvidia-xrun startxfce4'

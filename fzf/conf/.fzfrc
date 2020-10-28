@@ -1,5 +1,6 @@
 #!/bin/bash
 export FZF_MOVEMENT="--bind='ctrl-s:preview-page-down' \
+        --bind='alt-p:toggle-preview' \
 	--bind='ctrl-a:preview-page-up' \
 	--bind='ctrl-u:half-page-up+refresh-preview' \
 	--bind='alt-u:page-up+refresh-preview' \
@@ -36,7 +37,7 @@ export FZF_DEFAULT_OPTS="$FZF_MOVEMENT \
 	--ansi"
 if [[ -z "$DISPLAY" ]]; then
   FZF_DEFAULT_OPTS+="
---color=info:1\
+--color=info:1 \
 --color=prompt:2 \
 --color=pointer:3 \
 --color=hl+:4 \
@@ -53,3 +54,4 @@ if [[ -z "$DISPLAY" ]]; then
     else
       source .fzfguirc
 fi
+
