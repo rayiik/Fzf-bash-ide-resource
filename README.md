@@ -15,16 +15,19 @@ yank sections of text from man pages all while in a submenu of fzf)
 
 **-Bash**
 
-**-moreman** (python program that replaces the man command, if man page exists use man page else creat manpage from --help flag)
+**-moreman** (Python program that replaces the man command, if man page exists use man page else creat manpage from --help flag)
 
-**-rip grep** (because its better than grep there are many articles about why and what you can do with it but its necessary to some 
+**-rip grep** (Because its better than grep there are many articles about why and what you can do with it but its necessary to some 
 of the scripts here)
 
-**-fd** (rust replacement for most of find features[https://github.com/sharkdp/fd])
-some of these scripts are incomplete & some of these scripts are experiemental (ive done my best of cleaning up my project folder 
+**-fd** (Rust replacement for most of find features[https://github.com/sharkdp/fd])
+Some of these scripts are incomplete & some of these scripts are experiemental (ive done my best of cleaning up my project folder 
 but as this is my first one i may have missed some stuff) so please have a quick once over before use
 
 **-fzf** 
+
+**-colorizer**
+Colors the out put deliminated by coloumn not necessary but its there and may need to be removed if you dont want it)
 
 ### Side notes
    I posted these before being able to fully clean up becuase i wanted people to have access to the man page utilities much much 
@@ -46,3 +49,4 @@ heres a few demos in action but will update soon
 
 
 [![asciicast](https://asciinema.org/a/jkWUP3P8JXa5h36AK3aAGyxKo.svg)](https://asciinema.org/a/jkWUP3P8JXa5h36AK3aAGyxKo)
+
