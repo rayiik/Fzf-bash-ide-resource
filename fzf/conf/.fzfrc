@@ -50,7 +50,4 @@ if [[ -z "$DISPLAY" ]]; then
 --color=fg:13 \
 --color=fg+:14 \
 --preview='${FZF_PREVIEW:+"cnat; $FZF_PREVIEW"}'";
-    else
-      source .fzfguirc
-fi
 
