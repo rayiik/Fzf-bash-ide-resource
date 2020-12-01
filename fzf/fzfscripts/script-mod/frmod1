@@ -63,24 +63,7 @@ _rmodsearch () {
     --no-filename \
     --no-line-number
 }
-#color() {
-#  local c
-#  c="$1"
-#  shift
-#  printf '%s' "${colors[$c]}"
-#  printf '%s\n' "$@"
-#  printf '%s' "${colors[reset]}"
-#}
-#_colorize () {
-#  local c
-#  for list[@] in $(cat "$_tmpmodpath"); do
-#    if [[ "$list[@]" == "$(lsmod | rg $list[@])" ]]; then
-#      color blue "$(echo "$list")"; else
-#    color green "$(echo "$list")"
-#fi
-#done
-#color reset
-#}
+
 
 #arch() {
 #  local search packages
@@ -133,7 +116,7 @@ _EF_
 }
 testcom () {
 _modfile | fzf --reverse  --preview-window right:68:wrap \
-        --preview="{ cnat; fline ; modinfo {} | colorize; }" \
+        --preview="{ cnat; fline ; modinfo {} }" \
         --height=100
 unset _tmpmodpath
 }

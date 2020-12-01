@@ -20,7 +20,7 @@
 set -o nounset                              # Treat unset variables as an error
 
 callnt () {
-    colorize <"$PGM"/fzf/fzfscripts/utilscripts/nonexecutable/namet
+   cat  <"$PGM"/fzf/fzfscripts/utilscripts/nonexecutable/namet
 
   }
 

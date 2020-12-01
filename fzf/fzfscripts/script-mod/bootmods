@@ -25,6 +25,5 @@ lsmod | \
    $_rgcolor  -e '^[a-z A-Z].*:\s' -e '^sig_key:\s' \
    -e '^sig_hashalgo:\s' \
    -e '^sig_id:\s' " | \
-   colorize -d : | \
   sed 's/\n/\nMODULES=(/' | cat
 

@@ -1,0 +1,10 @@
+#!/bin/bash
+_securitycheck () {
+while read line;
+	do
+		systemd-analyze security "$line"
+done <<< "$(systemd-analyze security | awk '{print $1}')"
+}
+_securitycheck | tee -a ~/seccheck
+
+

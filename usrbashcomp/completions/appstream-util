@@ -1,0 +1,98 @@
+# appstream-util completion                               -*- shell-script -*-
+#
+# This file is part of libappstream-glib.
+#
+# Copyright 2014 Igor Gnatenko
+#
+# SPDX-License-Identifier: GPL-2.0+
+
+_appstream-util()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local commandix command
+    for (( commandix=1; commandix < cword; commandix++ )); do
+        if [[ ${words[commandix]} != -* ]]; then
+            command=${words[commandix]}
+            break
+        fi
+    done
+
+    # How many'th non-option arg (1-based) for $command are we completing?
+    local i nth=1
+    for (( i=commandix+1; i < cword; i++ )); do
+        [[ ${words[i]} == -* ]] || (( nth++ ))
+    done
+
+    case $prev in
+        -h|--help|--version)
+            return
+            ;;
+        *)
+            ;;
+    esac
+
+    $split && return
+
+    if [[ $command ]]; then
+
+        case $command in
+            validate|validate-relax|validate-strict)
+                ext='@(@(appdata|metainfo).@(@(x|y)ml?(.in)|@(x|y)ml.gz))'
+                ;;
+            validate-version)
+                ext='@(@(appdata|metainfo).@(@(x|y)ml?(.in)'
+                ;;
+            install|install-origin|uninstall)
+                ext='@(@(appdata|metainfo).@(@(x|y)ml|@(x|y)ml.gz))'
+                ;;
+            dump)
+                ext='@(desktop|@(appdata|metainfo).@(x|y)ml?(.in))'
+                ;;
+            upgrade)
+                ext='@(appdata.xml?(.in))'
+                ;;
+            non-package-yaml|status-html|status-csv)
+                ext='@(xml.gz)'
+                ;;
+            appdata-from-desktop)
+                case $nth in
+                    1)
+                        ext='@(desktop?(.in))'
+                        ;;
+                    2)
+                        COMPREPLY=( $( compgen -W '$( echo $prev | \
+                            sed -e "s/desktop/appdata.xml/g" )' -- "$cur" ) )
+                        ext=''
+                        ;;
+                esac
+                ;;
+            convert)
+                case $nth in
+                    1)
+                        ext='@(@(x|y)ml.gz|appdata.@(x|y)ml?(.in))'
+                        ;;
+                    *)
+                        ext=''
+                        ;;
+                esac
+                ;;
+            *)
+                ;;
+        esac
+        [[ -n $ext ]] && _filedir $ext        
+        return
+
+    fi
+
+    if [[ $cur == -* ]]; then
+        COMPREPLY=( $( compgen -W '$( _parse_help "$1" )' -- "$cur" ) )
+        [[ $COMPREPLY == *= ]] && compopt -o nospace
+    elif [[ ! $command ]]; then
+        COMPREPLY=( $( compgen -W '$( "$1" list-commands 2>/dev/null )' -- "$cur" ) )
+    fi
+} &&
+complete -F _appstream-util appstream-util
+
+# ex: ts=4 sw=4 et filetype=sh

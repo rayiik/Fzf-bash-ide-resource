@@ -1,0 +1,27 @@
+#!/bin/bash
+trap cleanup SIGINT SIGHUP SIGTERM
+_var="$1"
+declare _var
+#find source pkgs
+fdso () {
+rg -e '^[.]\s["'\''/a-zA-Z]*' "$_var" | tee -a "$HOME"/tmp/sourcelist
+rg -e '^source' -C0 "$_var" | tee -a "$HOME"/tmp/sourcelist
+}
+
+cleanup () {
+    unset _var
+    rm "$HOME"/tmp/sourcelist
+}
+
+folso () {
+    while read line; do
+        if [[ -n "$(awk '{print $2}' <<<"$line")" ]]; then
+            fdso "$(awk '{print $2}' <<<"$line")";
+                fi
+    done < <(fdso "$@")
+
+#                fi
+#    done < <(fdso "$@")
+}
+folso "$@" | sed '/^#/d' | sed -e 's/[ \s]#*$//' | sed -e '/^$/d'
+

@@ -16,17 +16,17 @@
 #       CREATED: 06/30/2020 03:15:23 PM
 #      REVISION:  ---
 #===============================================================================
-
+trap fmodclean SIGHUP SIGINT SIGKILL
 
 _fzmod () {
 LSPRE="echo {} | awk '{print $1}'"
 FCOM1="$LSPRE | xargs modinfo"
 FCOM2="$LSPRE | xargs man"
 if test -n "$FCOM2"; then
-	FINCOM="{ $FCOM1 ; $FCOM2; }"; else
-	FINCOM="{ $FCOM1; }"
+	FINCOM="{ ${FCOM1} ; ${FCOM2}; }"; else
+	FINCOM="{ ${FCOM1} }"
 fi
-lsmod | fzf --preview="cnat; ($FINCOM) 2>/dev/null | colorize" \
+lsmod | fzf --preview="cnat; ${FINCOM} 2>/dev/null" \
 	--preview-window=hidden  \
 	--bind="ctrl-p:toggle-preview" \
 	--bind="ctrl-h:execute(echo {} | xargs -ro frg)" \

@@ -1,4 +1,5 @@
 #!/bin/bash
+PREVIEW="${FZF_PREVIEW:-'cat {}'}"
 export FZF_MOVEMENT="--bind='ctrl-s:preview-page-down' \
         --bind='alt-p:toggle-preview' \
 	--bind='ctrl-a:preview-page-up' \
@@ -15,26 +16,23 @@ export FZF_MOVEMENT="--bind='ctrl-s:preview-page-down' \
   --bind='alt-h:backward-char+refresh-preview' \
   --bind='alt-l:forward-char+refresh-preview' \
   --bind='ctrl-l:clear-screen'"
- export FZF_DEFAULT_COMMAND="rg -uu \
+export FZF_DEFAULT_COMMAND="rg -uu \
   --files \
   -H"
 export FZF_ALT_COMMAND="fd -uu -t f"
-export FZF_PREVIEW="nvimpager {}"
 export FZF_DEFAULT_OPTS="$FZF_MOVEMENT \
-	--bind='ctrl-h:execute(moreman {})' \
+  --bind='ctrl-h:execute(moreman {})' \
   --bind='ctrl-p:toggle-preview' \
   --bind='ctrl-v:execute(nvimpager {})' \
-  --bind='f8:preview(nvimpager {})'
-  --bind='f9:preview(moreman {} 2>/dev/null)' \
-	--tiebreak='length,index' \
-  --preview-window 'right:68:wrap'
-  --height=100
-	--exact \
-	--info='inline' \
-	--cycle \
+  --tiebreak='length,index' \
+  --preview-window 'right:wrap:cycle' \
+  --height=100 \
+  --exact \
+  --info='inline' \
+  --cycle \
   --reverse \
-	--multi \
-	--ansi"
+  --multi \
+  --ansi"
 if [[ -z "$DISPLAY" ]]; then
   FZF_DEFAULT_OPTS+="
 --color=info:1 \
@@ -45,9 +43,8 @@ if [[ -z "$DISPLAY" ]]; then
 --color=spinner:7 \
 --color=header:8 \
 --color=border:9 \
---color=hl:0 \
+--color=hl:122 \
 --color=preview-fg:11 \
 --color=fg:13 \
---color=fg+:14 \
---preview='${FZF_PREVIEW:+"cnat; $FZF_PREVIEW"}'";
-
+--color=fg+:14"
+fi

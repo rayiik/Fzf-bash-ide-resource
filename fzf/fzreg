@@ -1,0 +1,6 @@
+#!/bin/bash
+search_cmd="${@:-'fd -uu -t f'}"
+_fzfregex () {
+    fzf --bind="space:reload:${search_cmd} | rg -e {q}" --phony
+}
+"$("${search_cmd}")" _fzfregex

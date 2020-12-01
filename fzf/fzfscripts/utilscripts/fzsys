@@ -21,4 +21,4 @@
 
 systemctl -a --type service | rg -e failed -C1 -e  fzf --preview="echo {} | awk '{print $1}' | \
   awk -F '@' '{print $1}' | awk -F '.' '{print $1}' | \
- xargs systemctl show | colorize -d ="
+ xargs systemctl show"

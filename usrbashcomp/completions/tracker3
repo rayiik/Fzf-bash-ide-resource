@@ -1,0 +1,45 @@
+#-*- mode: shell-script;-*-
+
+tracker3_cmds()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    cur=${COMP_WORDS[COMP_CWORD]}
+
+    if [[ $cword == 1 ]]; then
+	possible=`tracker3 | egrep "   [a-z].*   " | awk '{ print ($1) }' | sort | uniq`
+	COMPREPLY=( $(compgen -W "$possible" -- $cur) )
+	return 0;
+    fi
+
+    case $prev in
+	-h|--help)
+	    return 0;
+	    ;;
+	extract|info|-f|--file|-d|--database|-a|--add|-d|--remove)
+	    if [[ $cur != -* ]]; then
+		_filedir
+		return 0;
+	    fi
+	    ;;
+	-b|--dbus-service)
+	    possible=`tracker3 endpoint --list`
+	    COMPREPLY=( $(compgen -W "$possible" -- $cur) )
+	    return 0;
+	    ;;
+	*)
+	    ;;
+    esac
+
+    if [[ $cword -lt 2 ]]; then
+	return 0;
+    fi
+
+    if [[ -z $cur ]] || [[ $cur == -* ]]; then
+	possible=`${words[0]} ${words[1]} -h | egrep "^ *-" | sed "s/^ *//" | sed "s/  [^-].*//" | sed "s/,/\n/g" | sed "s/=.*//"`
+	COMPREPLY=( $(compgen -W "$possible" -- $cur) )
+    fi
+}
+
+complete -F tracker3_cmds tracker3

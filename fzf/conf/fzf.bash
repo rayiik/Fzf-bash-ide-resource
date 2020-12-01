@@ -2,7 +2,7 @@
 # Setup fzf
 # ---------
 PGM="$HOME/project/Man-fzf-scripts"
-export "$PGM"
+export PGM
 . "$PGM"/fzf/completion.bash
 . "$PGM"/fzf/fzf-extra.bash
 . "$PGM"/fzf/fzf.bind.bash

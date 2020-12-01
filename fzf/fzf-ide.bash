@@ -309,7 +309,7 @@ _cmf (){
 fzf \
   --ansi \
   --preview-window=right:65:wrap \
-  --height=85% \
+  --height=100% \
   --info=default \
   --bind='ctrl-a:preview-page-up' \
   --bind='ctrl-s:preview-page-down' \
@@ -319,13 +319,8 @@ fzf \
   --bind='alt-h:backward-char+refresh-preview' \
   --bind='alt-l:forward-char+refresh-preview' \
   --bind='alt-d:page-down+refresh-preview' \
-  --bind="alt-1:execute(printf {})+refresh-preview" \
-  --bind="alt-2:toggle+replace-query" \
-  --bind="alt-3:execute(print {q})+refresh-preview" \
   --bind="alt-h:preview(moreman $_tvar)" \
-  --bind="f8:preview:moreman $_tvar | rgt" \
-  --bind="f9:preview:man $_tvar | rg {}"\
-	--bind="ctrl-h:execute:moreman $_tvar" \
+  --bind="ctrl-h:execute:moreman $_tvar" \
   --layout=default \
 	--preview="moreman {} | rg --no-filename --passthru -e '-[a-zA-Z0-9]*'" \
   --bind='alt-r:reload(_flgswap)' \
@@ -379,14 +374,17 @@ _choice=$(_fini "$_rlvar")
 if [[ -n "$_choice" ]];
         then
             unset READLINE_LINE;
+            READLINE_POINT=$(( READLINE_POINT + ${#_choice} ))
             else
-                READLINE_LINE="$_tvar"
+                READLINE_LINE="${_rlvar}"
                 READLINE_POINT=0x7fffffff
 fi
 READLINE_LINE="$(echo -E "${_choice#*$' '}")"
 
 if [[ -n "$READLINE_LINE" ]]; then
-  echo -E "$READLINE_LINE"; else
+  echo -E "$READLINE_LINE" && \
+  READLINIE_POINT=$(( READLINE_POINT + ${_choice} )); else
+  READLINE_LINE="${_rlvar}"
    READLINE_POINT=0x7fffffff
 fi
 }

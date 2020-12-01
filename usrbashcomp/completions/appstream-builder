@@ -1,0 +1,37 @@
+# appstream-builder completion                            -*- shell-script -*-
+#
+# This file is part of libappstream-builder.
+#
+# Copyright 2014 Igor Gnatenko
+#
+# SPDX-License-Identifier: GPL-2.0+
+
+_appstream-builder()
+{
+    local prev cur
+    _init_completion -s || return
+
+    case $prev in
+        --help)
+            return
+            ;;
+        --screenshot-uri)
+            COMPREPLY=( $( compgen -W 'http:// ftp:// https://' -- "$cur" ) )
+            compopt -o nospace
+            ;;
+        --basename|--max-threads|--api-version)
+            return
+            ;;
+        *)
+            _filedir -d
+            ;;
+    esac
+
+    $split &&return
+
+    COMPREPLY=( $( compgen -W '$( _parse_help "$1" )' -- "$cur" ) )
+    [[ $COMPREPLY == *= ]] && compopt -o nospace
+} &&
+complete -F _appstream-builder appstream-builder
+
+# ex: ts=4 sw=4 et filetype=sh

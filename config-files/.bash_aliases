@@ -7,6 +7,8 @@
 #-------------------------------------------------------------------------------
 #functions
 #-------------------------------------------------------------------------------
+
+
 cd () {
         local dir="$1"
         if [[ "$dir" == '-' ]];
@@ -14,11 +16,12 @@ cd () {
         fi
         local dir="${dir:=$HOME}"
         if [[ -d "$dir" ]]; then
-             builtin 'cd' "$dir" >/dev/null || return;
+             builtin 'cd' "$dir" >/dev/null || return; lsd -a
         else
                 echo "bash: cdls: $dir: Directory not found"
         fi
 }
+
 #             if [[ "$(ls --color=auto | wc -l)" -gt 100 ]]; then
 #                        PS3="output is really long view anyways? y/n::"
 #                        select chocie in y n;
@@ -88,13 +91,12 @@ alias mv='mv -I'
 alias ffox='firefox && disown -a &'
 alias tbird='thunderbird && disown -a &'
 echo 'this is bash aliases'
-alias findmnt='findmnt | colorize'
+alias findmnt='findmnt '
 alias gparted='sudo gparted && disown -a &'
 alias cp='cp -i'
 alias fd='fd --color=always'
 alias pip='python3 -m pip'
 alias mycs='mycroft-start'
-alias mpkg='makepkg -si | colorize | tee -a ./pkglog'
 
 alias info='info --vi-keys'
 alias cdm='cd /home/rayiik/project/Man-fzf-scripts'
@@ -132,7 +134,8 @@ alias cds='cd /home/rayiik/fzfscripts'
 alias cdbf='cd /home/rayiik/coms/scripts/'
 alias pacman-rem='sudo pacman -R --unneeded --recursive --nosave --color=always'
 alias pacman-find='sudo pacman -Qiqe >> packages'
-alias ls='ls -A -F --color=always --group-directories-first'
+#alias ls='ls -A -F --color=always --group-directories-first'
+alias append_path='appendpath'
 alias lla='exa -F'
 alias reflector='sudo reflector --sort rate --latest 20  --save /etc/pacman.d/mirrorlist'
 alias ps1='ps -e | fzf | rg '
@@ -187,7 +190,7 @@ alias comc='compgen -c'
 alias cl='dls'
 alias wc='uu-wc'
 alias who="uu-who"
-alias whoami='uu-whoami | colorize'
+alias whoami='uu-whoami '
 alias cargo='cargo --color=always'
 alias yes='uu-yes'
 alias ll='lsd -laF --color=auto'
@@ -198,7 +201,8 @@ alias comc='compgen -c'
 alias ...='zd ..'
 alias cd1='cd /home/rayiik/coms/scripts/; ls -a'
 alias cd2='cd /home/rayiik/fzfscripts; ls -a'
-alias fdl='fdisk -l | colorize'
+alias fdl='fdisk -l '
 alias sssid='sudo iw dev wlo1 scan | rg -C0 --no-filename SSID: | sort -u'
 alias shf='ssh rayiik@192.168.1.225'
 alias nx='unset DISPLAY; nvidia-xrun startxfce4'
+alias ls='lsd --color=always'

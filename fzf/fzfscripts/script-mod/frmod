@@ -134,7 +134,7 @@ lsmod | awk '{print $1}' > "$HOME"/tmp/lsmodpattern
         | rg "$Fvar" --no-filename --passthru \
         | tee "$_tmpmodpath" \
         | fzf --reverse  --preview-window right:68:wrap \
-        --preview="{ cnat; fline ; modinfo {} | colorize; }" \
+        --preview="{ cnat; fline ; modinfo {}; }" \
         --height=100
 unset _tmpmodpath
 }

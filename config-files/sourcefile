@@ -1,42 +1,50 @@
 #!/bin/bash
-eccho "sourcefile"
-export PGM="$HOME/project/Man-fzf-scripts"
-export PGCONF="$PGM/config-files"
+echo "sourcefile"
+HOME="/home/rayiik"
+PGM="${HOME}/project/Man-fzf-scripts"
+PGCONF="${PGM}/config-files"
+RIPGREP_CONFIG_PATH="${PGCONF}/ripgrep.conf"
+export PGM
+export RIPGREP_CONFIG_PATH
+export HOME
+export PGCONF
 
-if test -f "$PGCONF/ripgrep.conf"; then
-export RIPGREP_CONFIG_PATH="$PGCONF/ripgrep.conf"; else
-echo "$col1 failed to load ripgrep.conf $nc"
+if [[ -n "${_origonalsetup}" ]]; then
+    cp "${PGCONF}/.inputrc" "${HOME}/"
+    cp "${PGCONF}/.vimrc" "${HOME}/"
+    cp "${PGM}"/nvimpager "${HOME}"/.config
+    cp "${PGM}/nvim" "${HOME}/.config"
 fi
 
-if test -f "$PGM"/fzf/conf/.fzf.bash; then
-. "$PGM"/fzf/conf/.fzf.bash; else
-  echo "$col1 .fzf.bash not found $nc"
-fi
-if test -f "$PGCONF/.bash_aliases";
-        then
-            . "$PGCONF"/.bash_aliases
-fi
-appendpath () {
-    case ":$PATH:" in
+while read line;
+do
+    source "$line"
+    done <<EOF
+/home/rayiik/project/Man-fzf-scripts/config-files/user-dirs.dirs
+/home/rayiik/project/Man-fzf-scripts/config-files/user-dirs.locale
+/home/rayiik/project/Man-fzf-scripts/config-files/lg.sh
+/home/rayiik/project/Man-fzf-scripts/fzf/conf/fzf.bash
+/home/rayiik/project/Man-fzf-scripts/config-files/.bash_aliases
+EOF
+
+append_path () {
+    case ":${PATH}:" in
         *:"$1":*)
             ;;
         *)
             PATH="${PATH:+$PATH:}$1"
     esac
-}
-appendpath "$PGM"/arch-related
-appendpath "$PGM"/fzf
-appendpath "$PGM"/fzf/fzf-scripts
-appendpath "$PGM"/fzf/fzf-scripts/fzf-modified
-appendpath "$PGM"/fzf/fzf-scripts/unused
-appendpath "$PGM"/fzf/fzfconf
-appendpath "$PGM"/fzf/fzfscripts
-appendpath "$PGM"/fzf/fzfscripts/fzf-man
-appendpath "$PGM"/fzf/fzfscripts/script-mod
-appendpath "$PGM"/fzf/fzfscripts/utilscripts
-appendpath "$PGM"/misc
-appendpath "$PGM"/utils
-unset appendpath
-
-
+    }
+append_path "${PGM}/arch-related"
+append_path "${PGM}/fzf/fzf-scripts"
+append_path "${PGM}/fzf/fzf-scripts/fzf-modified"
+append_path "${PGM}/fzf/fzf-scripts/unused"
+append_path "${PGM}/fzf/fzfconf"
+append_path "${PGM}/fzf/fzfscripts"
+append_path "${PGM}/fzf/fzfscripts/fzf-man"
+append_path "${PGM}/fzf/fzfscripts/script-mod"
+append_path "${PGM}/fzf/fzfscripts/utilscripts"
+append_path "${PGM}/misc"
+append_path "${PGM}/utils"
+append_path "${PGM}/acquired"
 
