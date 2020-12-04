@@ -41,8 +41,8 @@ cd () {
 pacup () {
 sudo pacman -Syyu \
     --needed --noconfirm | \
-    tee -a /home/rayiik/tmp/pacup.tmp | \
-  colorize || return 1
+    tee -a /home/rayiik/tmp/pacup.tmp \
+   || exit 1 
 }
 
 pacfunc () {
@@ -61,10 +61,6 @@ pacfunc () {
    done
  done
 }
-gimp () {
-    gimp "$1" && disown -a &
-}
-
 
 #-------------------------------------------------------------------------------
 # conditional aliases
