@@ -103,7 +103,7 @@ set shellpipe
 set nocursorline
 set shellredir
 set title
-set guifont=Hack:h14:i
+set guifont=Hack:h16:i
 set bs=2
 set noautoindent
 set ruler

@@ -1,17 +1,16 @@
 #!/bin/bash
-PREVIEW="${FZF_PREVIEW:-'cat {}'}"
 export FZF_MOVEMENT="--bind='ctrl-s:preview-page-down' \
-        --bind='alt-p:toggle-preview' \
-	--bind='ctrl-a:preview-page-up' \
-	--bind='ctrl-u:half-page-up+refresh-preview' \
-	--bind='alt-u:page-up+refresh-preview' \
-	--bind='ctrl-d:half-page-down+refresh-preview' \
-	--bind='alt-d:page-down+refresh-preview' \
+  --bind='alt-p:toggle-preview' \
+  --bind='ctrl-a:preview-page-up' \
+  --bind='ctrl-u:half-page-up+refresh-preview' \
+  --bind='alt-u:page-up+refresh-preview' \
+  --bind='ctrl-d:half-page-down+refresh-preview' \
+  --bind='alt-d:page-down+refresh-preview' \
   --bind='alt-y:yank' \
   --bind='ctrl-y:kill-line' \
   --bind='alt-g:ignore' \
   --bind='ctrl-g:top' \
-	--bind='alt-a:toggle-all' \
+  --bind='alt-a:toggle-all' \
   --bind='alt-s:toggle-sort' \
   --bind='alt-h:backward-char+refresh-preview' \
   --bind='alt-l:forward-char+refresh-preview' \
@@ -25,7 +24,7 @@ export FZF_DEFAULT_OPTS="$FZF_MOVEMENT \
   --bind='ctrl-p:toggle-preview' \
   --bind='ctrl-v:execute(nvimpager {})' \
   --tiebreak='length,index' \
-  --preview-window 'right:wrap:cycle' \
+  --preview-window 'right:100:wrap:cycle' \
   --height=100 \
   --exact \
   --info='inline' \
