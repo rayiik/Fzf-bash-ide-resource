@@ -17,12 +17,11 @@
 #      REVISION:  ---
 #===============================================================================
 
-set -o nounset                              # Treat unset variables as an error
 
-for file in $(estrip <<<"$(fd -u -t f)");
+while read line;
         do
             git add "$file"
-        done
-git commit -m 'updating repo'
+        done <<<"$(fd -u . | estrip)"
+git commit -a -m 'updating repo'
 git push
 
