@@ -1,0 +1,24 @@
+# Attention: this is a Bash Script, not `sh`.
+
+#_wordlistctl_options="fetch              fetch wordlists.
+#search             search wordlists.
+#list               list wordlists.
+#-h                 show this help message and exit.
+#--help             show this help message and exit.
+#-v                 show program's version number and exit.
+#--version          show program's version number and exit."
+
+_wordlistctl()
+{
+    local current options
+
+    options="fetch search list -h --help -v --version"
+
+    current="${COMP_WORDS[COMP_CWORD]}"
+
+    if [[ "${current}" == -* ]]; then
+        COMPREPLY=($(compgen -W "${options}" -- ${current}))
+    fi
+}
+
+complete -F _wordlistctl wordlistctl

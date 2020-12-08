@@ -1,0 +1,84 @@
+# Bash completion for pdfgrep
+#
+# Copyright (C) 2015-2018 by Hans-Peter Deifel (hpd@hpdeifel.de)
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the
+# Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+# Boston, MA 02110-1301 USA.
+
+_pdfgrep() 
+{
+    local cur prev words cword
+    _init_completion || return
+
+    local opts
+    opts=(-n --page-number \
+          -i --ignore-case \
+          -F --fixed-strings \
+          -P --perl-regexp \
+          -H --with-filename \
+          -h --no-filename \
+	  -l --files-with-matches \
+	  -L --files-without-match \
+          -c --count \
+          -p --page-count \
+	  -C --context \
+	  -A --after-context \
+	  -B --before-context \
+          --color \
+          --cache \
+          -r -R --recursive \
+          --exclude \
+          --include \
+	  --page-range \
+          --help \
+          -V --version \
+          -q --quiet \
+          -Z --null\
+          --match-prefix-separator \
+          --password \
+          -m --max-count \
+          --debug \
+          --warn-empty \
+          --unac \
+	  -e --regexp \
+	  -f --file \
+         )
+
+    case "${prev}" in
+        --color)
+            COMPREPLY=( $(compgen -W "always never auto" -- ${cur}) )
+            ;;
+        --exclude|--include|--password|-m|--max-count|--match-prefix-separator|--page-range|-e|--regexp|-f|--file)
+            COMPREPLY=( )
+            ;;
+        *)
+            case "${cur}" in
+                -*)
+                    COMPREPLY=( $(compgen -W "${opts[*]}" -- ${cur}) )
+                    return
+                    ;;
+                *)
+                    _filedir pdf
+                    ;;
+            esac
+    esac
+
+    return
+} &&
+complete -F _pdfgrep pdfgrep
+
+# Local Variables:
+# mode: shell-script
+# End:
