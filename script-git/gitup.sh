@@ -20,7 +20,7 @@
 
 while read line;
         do
-            git add "$file"
+            git add ./"$file"
         done <<<"$(fd -u . | estrip)"
 git commit -a -m 'updating repo'
 git push
