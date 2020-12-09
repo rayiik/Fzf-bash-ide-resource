@@ -4,7 +4,7 @@
 #-------------------------------------------------------------------------------
 echo "this is etcbashrc"
 # If not running interactively, don't do anything
-[[ $- != *i* ]] && return
+#[[ $- != *i* ]] && return
 
 [[ $DISPLAY ]] && shopt -s checkwinsize
 
@@ -14,7 +14,7 @@ echo "this is etcbashrc"
 # set mask and font
 #-------------------------------------------------------------------------------
 set -o vi
-umask 027
+umask 0005
 setfont ter-v28b
 #-------------------------------------------------------------------------------
 # set term if not gui not loaded
@@ -68,12 +68,12 @@ _ete1 () {
 }
 
 if [[ "$USER" == 'rayiik' ]]; then
-PS1="\[$col9\]R\[$col11\]A\[$col13\]Y\[$col1\]I\[$col2\]I\[$col8\]K:\[$col12\]\$(date +%d)\[$col13\]-\$(date +%A)-\[$col14\]\$(date +%B)\]
+PS1="\[$col9\]R\[$col11\]A\[$col13\]Y\[$col1\]I\[$col2\]I\[$col8\]K:\[$col12\]\$(date +%d)\[$col13\]-\$(date +%a)-\[$col14\]\$(date +%B)\]
 \[$col2\]:\[$col3\][\@]\[$col4\]<\w>\[$col5\]/\n\[$col6\]:\[$col7\]-->\[$nc\]\${estat}\[$nc\]"
 fi
 
 if [[ "$USER" != 'rayiik' ]]; then
-    PS1="\[$col3\] $USER\[$col2\]\[$col11\]$(date +%d %A %B)
+    PS1="\[$col3\] $USER\[$col2\]\[$col11\]$(date +%d-%a-%B)
 \[$col2\]:\[$col3\][\@]\[$col4\]<\w>\[$col5\]/\n\[$col6\]:\[$col7\]-->\[$nc\]"
 fi
   export PS1
@@ -144,12 +144,13 @@ appendpath () {
 }
 
 
-
+appendpath '/home/rayiik/.cache/pacaur/bcompare/src/install/bin/bcompare'
 appendpath '/home/rayiik/.cargo/bin'
 appendpath '/home/rayiik/.local/bin'
 appendpath '/home/rayiik/.local/share/nvim/bin'
 appendpath '/home/rayiik/.pyenv/bin'
 appendpath '/home/rayiik/.pyenv/shims'
+appendpath '/home/rayiik/.bin'
 appendpath '/home/rayiik/.vim/vim/bin'
 appendpath '/home/rayiik/.vim/vim/bundle/clang_complete/bin'
 appendpath '/home/rayiik/bin'
@@ -176,9 +177,8 @@ unset appendpath
 #
 
 
-. "$PGM"/config-files/sourcefile
 
-[[ -r /usr/share/bash-completion/bash_completion   ]] && . /usr/share/bash-completion/bash_completion 
+[[ -r /usr/share/bash-completion/bash_completion   ]] && . /usr/share/bash-completion/bash_completion
 
 if  test -d /etc/profile.d; then
 	for profile in /etc/profile.d/*.sh; do
@@ -186,12 +186,6 @@ if  test -d /etc/profile.d; then
                     . "$profile"
 	done
 	unset profile
-fi
-if [[ -r "${PGM}/config-files/.bash_aliases" ]]; then
-	. "${PGM}"/conffig-files/.bash_aliases; elif
- test -r /home/rayiik/.bash_aliases; then
-	. /home/rayiik/.bash_aliases; else
-  echo "${col1} failed to load bash_aliases $nc"
 fi
 
  if [ -x /usr/bin/dircolors ]; then
@@ -202,19 +196,15 @@ fi
 
 complete -F _complete_alias container
 
+. "$PGM"/config-files/sourcefile
+
 #-------------------------------------------------------------------------------
 # functions
 #-------------------------------------------------------------------------------
 
-_assw () {
-  if [[ "$ATHAME_ENABLED" == 1 ]]; then
-    export ATHAME_ENABLED=0 ; else
-    export ATHAME_ENABLED=1
-  fi
-  echo "$ATHAME_ENABLED"
-}
+
 _psudo () {
-  printf '%s' sudo\\s
+  printf '%s' sudo\\t
 }
 #-------------------------------------------------------------------------------
 # bindings for functions
@@ -226,10 +216,9 @@ bind -m emacs-standard '"\C-z": vi-editing-mode'
 
 #bind -m vi-insert -x '"\\C-\\e\\": "_assw " '
 #bind -m vi-command -x '"\\C-\\e\\": "_assw " '
-#bind -m vi-insert -x '"\\es":" \\C-a `_psudo` \\C-\\ee"'
-#bind -m vi-command -x '"\\es":" \\C-a `_psudo` \\C-\\ee"'
-#bind -m emacs-standard '"\\es":" \\C-a `_psudo` \\C-\\ee"'
-
+bind -m vi-insert -x '"\C-\\": \C-a _psudo \C-\ee'
+bind -m vi-command -x '"\C-\\": \C-a _psudo \C-\ee'
+bind -m emacs-standard '"\C-\\": \C-a _psudo \C-\ee'
 
 #eval "$(cod init $$ bash)"
 #eval "$(navi widget bash)"
@@ -279,24 +268,24 @@ MANPATH=$MANPATH:$HOME/share/man
 #shell bling
 #-------------------------------------------------------------------------------
 cnat
-neofetch
+fline
 echo "$col4 testing display $nc"
 if test -z "$DESKTOP_SESSION"; then
  echo  "$col1 this is not xserver becuase \$DESKTOP_SESSION is unset $nc"; else
   echo "$col12 display is "$DESKTOP_SESSION" running $nc"
 fi
 
-cdls() {
-        local dir="$1"
-        local dir="${dir:=$HOME}"
-        if [[ -d "$dir" ]]; then
-                cd "$dir" >/dev/null || return; ls --color=auto
-        else
-                echo "bash: cdls: $dir: Directory not found"
-        fi
-}
+#cdls() {
+#        local dir="$1"
+#        local dir="${dir:=$HOME}"
+#        if [[ -d "$dir" ]]; then
+#                cd "$dir" >/dev/null || return; ls --color=auto
+#        else
+#                echo "bash: cdls: $dir: Directory not found"
+#        fi
+#}
 
-## help "$READLINE_LINE" 2>/dev/null || man "$READLINE_LINE"
+# help "$READLINE_LINE" 2>/dev/null || man "$READLINE_LINE"
 # mycroftboot
 
 
