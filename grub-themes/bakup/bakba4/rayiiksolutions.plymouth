@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=rayiiksolutions
+Description=simple loading rayiiksolutions animation
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/rayiiksolutions
+ScriptFile=/usr/share/plymouth/themes/slash/animated-boot.script

@@ -1,0 +1,32 @@
+[Plymouth Theme]
+Name=rayiiksolutions
+Description='rayiiksolutions scifi animation'
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/rayiiksolutions
+ScriptFile=/usr/share/plymouth/themes/rayiiksolutions/animated-boot.script
+
+[boot-up]
+UseProgressBar=true
+UseAnimation=true
+
+[shutdown]
+UseProgressBar=true
+UseAnimation=treu
+
+[reboot]
+UseProgressBar=true
+UseAnimation=true
+
+[updates]
+UseProgressBar=true
+UseAnimation=true
+
+[system-upgrade]
+UseProgressBar=true
+UseAnimation=true
+
+[firmware-upgrade]
+UseProgressBar=true
+UseAnimation=true

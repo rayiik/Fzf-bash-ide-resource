@@ -1,0 +1,22 @@
+#!/bin/bash -
+#===============================================================================
+#
+#          FILE: adbrm.sh
+#
+#         USAGE: ./adbrm.sh
+#
+#   DESCRIPTION:
+#
+#       OPTIONS: ---
+#  REQUIREMENTS: ---
+#          BUGS: ---
+#         NOTES: ---
+#        AUTHOR: Rayiik (), dsimon_aas@hotmail.com
+#  ORGANIZATION:
+#       CREATED: 12/05/2020 08:51:16 PM
+#      REVISION:  ---
+#===============================================================================
+
+set -o nounset                              # Treat unset variables as an error
+
+adb shell pm uninstall -k --user 0 "$1"

@@ -113,7 +113,7 @@ fi
 if [[ -v FV_SEARCH ]]; then
   search_cmd="$FV_SEARCH"
 else
-  search_cmd=$(select_from 'ag' 'ack' 'grep')
+  search_cmd=$(select_from 'fd' 'rg' 'ag' 'ack' 'grep')
 fi
 
 if [[ "$search_cmd"  == 'grep' ]]; then
@@ -131,6 +131,15 @@ if [[ -n "$1" ]]; then
 fi
 
 case "$search_cmd" in
+    'fd')
+        search_opts+=( '-u -t f --color=always' )
+        if [[ -n "$allfiles" ]]; then
+            search_opts+=( '-uu' )
+        fi
+        if [[ "$search_string" == '' ]]; then
+            search_opts+=( '.' )
+        fi
+        ;;
   'ag')
     search_opts+=( '--color' )
     if [[ -n "$allfiles" ]]; then
