@@ -1,0 +1,4 @@
+
+fd -uu -t l | fzf --preview="echo {} && fline; readlink -f {} &&  fline \
+  $(dirname {}) && fline; ls $(dirname "$(readlink -f {}) | rg --passthru {n} ")" \
+  --preview-window right:68:wrap

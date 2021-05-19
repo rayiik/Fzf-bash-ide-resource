@@ -1,0 +1,32 @@
+#!/bin/bash
+#===============================================================================
+#
+#          FILE: fzfinverse.sh
+#
+#         USAGE: ./fzfinverse.sh
+#
+#   DESCRIPTION:
+#
+#       OPTIONS: ---
+#  REQUIREMENTS: ---
+#          BUGS: ---
+#         NOTES: ---
+#        AUTHOR: Rayiik (), dsimon_aas@hotmail.com
+#  ORGANIZATION:
+#       CREATED: 08/06/2020 12:59:32 PM
+#      REVISION:  ---
+#===============================================================================
+
+fvar="$1"
+echo "$fvar"
+if test -n "$1"; then
+  fvar="$1"
+else fvar=''
+fi
+echo "$fvar" | \
+  fd -uu -t f \
+  -x rg . {} --heading --no-filename | \
+  fzf --print-query \
+  --preview="rg {+} --files-with-matches -H" \
+  --bind="change:reload(export fvar={q} && echo \"$fvar\" | fd -uu -t f \
+  -x rg . --no-filename --heading)"

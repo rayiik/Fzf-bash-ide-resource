@@ -1,0 +1,40 @@
+#!/bin/bash -
+#===============================================================================
+#
+#          FILE: __coms.sh
+#
+#         USAGE: ./__coms.sh
+#
+#   DESCRIPTION:
+#
+#       OPTIONS: ---
+#  REQUIREMENTS: ---
+#          BUGS: ---
+#         NOTES: ---
+#        AUTHOR: Rayiik (), dsimon_aas@hotmail.com
+#  ORGANIZATION:
+#       CREATED: 07/29/2020 08:46:03 PM
+#      REVISION:  ---
+#===============================================================================
+
+set -o nounset                              # Treat unset variables as an error
+unset file
+coms () {
+case "$PATH" in
+  (*[!:]:) PATH="$PATH:" ;;
+esac
+
+set -f; IFS=:
+for dir in $PATH; do
+  set +f
+  [ -z "$dir" ] && dir="."
+  for file in "$dir"/*; do
+    if [ -x "$file" ] && ! [ -d "$file" ]; then
+	    printf '%s = %s\n' "${file##*/}" "$file"
+    fi
+  done
+done
+}
+coms
+unset dir
+unset file

@@ -1,0 +1,42 @@
+#!/bin/bash
+
+declare Fvar
+declare tfile
+
+FZF_PREVIEW="echo {} | sed -e 's/\s.*//' | xargs -r man | \
+ rg -e '[A-Z][A-Z].*' -e '-[a-zA-Z].*' --no-filename"
+
+_Fzmoreman () {
+  awk '{print $1}' <("$HOME"/tmp/man.tmp)
+}
+
+fmm () {
+		fzvar "$1"
+
+man -k "$Fvar" | \
+   rg --no-filename --passthru -e "$Fvar" | \
+   fzf --tiebreak=length \
+   --bind="alt-t:toggle-search"
+  --preview="${FZF_PREVIEW:+"cnat; $FZF_PREVIEW"}"	\
+  --bind="ctrl-h:execute(echo {+} | sed -e 's/\s.*//' | \
+  xargs -r moreman)"
+}
+
+fzvar () {
+	echo "$1"
+   tfile="$1"
+if [ -n "$tfile" ]; then
+	 Fvar="$tfile"; else
+	 Fvar='.'
+fi
+}
+
+fzclean () {
+  unset Fvar
+  unset tfile
+  unset fcom
+}
+
+fmm "$1"
+fzclean
+clear

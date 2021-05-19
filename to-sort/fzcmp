@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+fzfcmp () {
+    local term
+    local FZF_DEFAULT_COMMAND
+    FZF_DEFAULT_COMMAND="infocmp $TERM -1"
+    term="$(
+    infocmp "${_termchoice:-"$TERM"}" -1 | tr '=' '\n' | \
+       tr '\t' '' | \
+      sed 's/,$//' | fzf \
+      --preview='man terminfo | rg -C10 -e {q}' \
+        --preview-window='right:80:wrap' --phony \
+        --bind="f9:reload:changeterm"
+    unset _termchoice
+    )"
+
+
+ if test -n "$(rg -e 'echo' <<<"$READLINE_LINE")"; then
+    READLINE_LINE="${READLINE_LINE:0:$READLINE_POINT} $(awk -F= '{print $1}' <<<"${term:-''}" \
+    | sed 's/,$//') ${READLINE_LINE:$READLINE_POINT}";
+    else
+    READLINE_LINE="$(echo 'echo -e' \"${READLINE_LINE:0:$READLINE_POINT} $(awk -F= '{print $1}' <<<"${term:-''}" \
+        | sed 's/,$//') ${READLINE_LINE:$READLINE_POINT}\")"
+ fi
+  READLINE_POINT=$(( ${#term} + READLINE_POINT ))
+unset term
+}
+
+termfilter () {
+    Fzvar="$@"
+    local Fzvar
+    _query="${Fzvar:-"$(command rg {})"}"
+fd -uu  . -t f --full-path /usr/share/terminfo  \
+    -x rg --files-with-matches "\${_query:-${1:-/E}}"
+
+}
+
+_fztin () {
+local _query
+termfilter  "$@" \
+  | awk -F/ '{print  $NF}' \
+  | sort -u \
+  | fzf --bind="alt-p:execute:echo $(infocmp {}) >> $HOME/tmp/{}.tmp" \
+  --preview-window "right:85:wrap" \
+  --preview="cnat; infocmp {} -l ";
+}
+
+changeterm () {
+local _termchoice
+eval "${_termchoice=+:$(fztin "$@")}" | fzfcmp
+}
+
+bind -x '"\et": fzfcmp'
+bind -x '"\em": changeterm  '
+
+

@@ -1,0 +1,30 @@
+#!/bin/bash
+#===============================================================================
+#
+#          FILE: estrip.sh
+#
+#         USAGE: ./estrip.sh
+#
+#   DESCRIPTION:
+#
+#       OPTIONS: ---
+#  REQUIREMENTS: ---
+#          BUGS: ---
+#         NOTES: ---
+#        AUTHOR: Rayiik (), dsimon_aas@hotmail.com
+#  ORGANIZATION:
+#       CREATED: 09/04/2020 06:18:00 PM
+#      REVISION:  ---
+#===============================================================================
+estrip () {
+sed 's/\x1b\[[0-9;]*m//g'
+sed 's/\x1b\[[0-9;]*[mGKHF]//g'
+sed 's/\x1b\[[0-9;]*[mGKF]//g'
+sed 's/\x1b\[[0-9;]*[a-zA-Z]//g'
+}
+__rootshcom='eval "$("${@}" | estrip)"'
+pkglog="/home/rayiik/pkglog-$(date +%Y-%m-%d)"
+rootsh -u rayiik -d /home/rayiik/.tmp -f pkglog.tmp  \
+"${__rootshcom}"
+
+

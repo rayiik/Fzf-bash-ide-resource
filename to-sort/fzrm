@@ -1,0 +1,105 @@
+#!/bin/bash -
+#===============================================================================
+#
+#          FILE: fzrm.sh
+#
+#         USAGE: ./fzrm.sh
+#
+#   DESCRIPTION:
+#
+#       OPTIONS: ---
+#  REQUIREMENTS: ---
+#          BUGS: ---
+#         NOTES: ---
+#        AUTHOR: Rayiik (), dsimon_aas@hotmail.com
+#  ORGANIZATION:
+#       CREATED: 09/03/2020 12:42:42 AM
+#      REVISION:  ---
+#===============================================================================
+set -e
+#-------------------------------------------------------------------------------
+#
+#-------------------------------------------------------------------------------
+
+_origloc="$(pwd)"
+echo "$_origloc"
+ _fline () {
+    echo "$(tput setaf 2) $(printf "%${COLUMNS:-136}s" " "  | tr " " "-") $nc"
+}
+__fzfmain () {
+fd -uu -t f . -d3 | \
+  fzf --bind='f9:execute:rm {+} -R' \
+  --bind='f8:execute:mv {} ~/tmp/' \
+  --bind="f6:reload:fd -uu -t d -d3 . ./" \
+  --bind="f7:reload:fd -uu -t f -d3 . ./" \
+  --bind="ctrl-v:execute:$EDITOR {}" \
+  --bind="f11:reload:cd ${_origloc} || exit 1; fd -uu -t d -d3 . ./ " \
+      --bind="f12:reload:cd / || exit; fd -uu -t d -d3 . ./" \
+      --bind="ctrl-alt-m:reload:cd {} || exit 1; fd -uu -t d . ./ -d3" \
+      --bind="ctrl-alt-u:reload:cd {} || exit 1; fd -uu -t f . ./ -d3" \
+      --bind="ctrl-alt-d:reload:cd '../' || exit; fd -uu -t d -d3 . ./" \
+  --header="for help menu use ctrl-alt-o;
+    fline" \
+        --bind="alt-q:reload:cd {q} || exit 1; fd -uu -t f -d3 . ./" \
+  --bind="alt-c:clear-query" \
+  --bind="ctrl-alt-c:replace-query" \
+  --bind="ctrl-alt-o:preview:${preview:-"{
+echo  ACTIONS
+echo \"$(fline)\"
+echo F12:change to root
+echo alt-q change directory to query
+echo f6:dir search
+echo f7:file search
+echo f8:mv to tmp
+echo f9: rm  selected
+echo alt-c clear query
+echo ctrl-alt-c replace query
+echo ctrl-alt-m change to target dir and search for directorys
+echo ctrl-alt-u change to target dir and search for files
+echo f11:change to origonal directory dir
+echo ctrl-alt-u: change up 2 directory
+echo ctrl-alt-d: change up one dircetory
+echo ctrl-v: open in editor
+echo ctrl-h: open selection in manpage
+echo alt-a: select all
+echo ctrl-alt-h: open keybindings in preview
+echo \"$(fline)\"
+echo MOVEMENT
+echo \"$(fline)\"
+echo ctrl-u:half page up
+echo alt-u: page up
+echo ctrl-d: half page down
+echo alt-d: page down
+echo ctrl-s: preview page down
+echo ctrl-a: preview page up
+echo ctrl-p: toggle preview
+echo alt-h: shift cursor left in query
+echo alt-l: shift cursor right in query
+echo ctrl-j: down in selection
+echo ctrl-k: up in selection
+}"}" \
+    --preview="pwd; {
+  if test -f {};
+       nvimpager {};
+    then
+     elif
+       test -d {};
+    then
+     fd -uu -t d -d 1 . $PWD/{};
+       fi
+   }"
+}
+_cdmain () {
+    local finaldest
+    finaldest="$(__fzfmain)" || return
+    if [[ -z "$(rg -e '^/' <<<"$finaldest")" ]];
+    then
+        finaldest="${finaldest//"$finaldest"/\/"$finaldest"}"
+    fi
+cd "$finaldest" || exit 1
+unset finaldest
+}
+while true;
+do
+    _cdmain
+done

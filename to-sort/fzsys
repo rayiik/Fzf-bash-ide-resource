@@ -1,0 +1,24 @@
+#!/bin/bash -
+#===============================================================================
+#
+#          FILE: fzsys.sh
+#
+#         USAGE: ./fzsys.sh
+#
+#   DESCRIPTION:
+#
+#       OPTIONS: ---
+#  REQUIREMENTS: ---
+#          BUGS: ---
+#         NOTES: ---
+#        AUTHOR: Rayiik (), dsimon_aas@hotmail.com
+#  ORGANIZATION:
+#       CREATED: 08/20/2020 01:17:58 AM
+#      REVISION:  ---
+#===============================================================================
+
+#"service mount swap socket target device automount timer path slice scope"
+
+systemctl -a --type service | rg -e failed -C1 -e  fzf --preview="echo {} | awk '{print $1}' | \
+  awk -F '@' '{print $1}' | awk -F '.' '{print $1}' | \
+ xargs systemctl show"

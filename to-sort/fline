@@ -1,0 +1,7 @@
+#!/bin/bash
+_fline () {
+lnum="${COLUMNS:-137}"
+    echo "$(tput setaf 2) $(printf "%${lnum}s" " "  | tr " " "-") $nc"
+    unset lnum
+}
+_fline

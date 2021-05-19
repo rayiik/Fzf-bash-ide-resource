@@ -1,0 +1,6 @@
+#!/bin/bash
+[[ "$#" -gt 0 ]] || echo "must specificy target directory to copy to" && exit
+while read line
+    do
+        mv "$line" "${1}"
+        done <<<"$(fd -uu -t f . ./ -d "${2:-1}" | rg -e '.png|.jpeg|.jpg|.svg' | fzf -m | estrip)"

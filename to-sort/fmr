@@ -1,0 +1,56 @@
+#!/bin/bash
+# Define default find command or set to
+
+	fmr () {
+    local Fvar
+   local Fquery
+    fzvar "$@"
+
+  man -k "$Fvar" | \
+   rg "$Fquery" --no-filename	\
+   -C 1 | awk '{print $1}' \
+| sort -u \
+	| fzf \
+	--preview="cnat; moreman {}" \
+	--bind="ctrl-h:execute:moreman {}"
+}
+
+
+fzvar () {
+	local tfile="$1"
+  local query="$2"
+
+  if [[ -n "$1" ]] && [[ -n "$2" ]]; then
+    Fvar="$tfile"
+    Fquery="$query"; elif
+   [[ -z "$2" ]]; then
+    Fvar='.'
+    Fquery="$tfile"; elif
+   [[ -z "$1" ]]; then
+    Fvar='.'
+    Fquery='.'
+  fi
+#  if [[ -z "$query" ]]; then
+#if [[ -n "$tfile" ]]; then
+#	 Fvar='.' && Fquery="rg -e \
+#     $tfile --no-filename --color ansi \
+#   -C1"; else
+#	 Fvar='.' &&  Fquery='.';
+#fi; else
+#     Fvar="$tfile" && \
+#   Fquery="rg -e \"$query\" --no-filename \
+#   --color ansi -C1" && \
+#     echo "$Fquery $Fvar"
+#fi
+}
+
+fzclean () {
+  unset Fquery
+  unset Fvar
+  unset tfile
+}
+
+
+fzvar "$@"
+clear
+fzclean

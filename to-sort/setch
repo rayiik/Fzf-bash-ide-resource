@@ -1,0 +1,16 @@
+#!/bin/bash
+
+main () {
+
+   local _currentowner="${3:-' '}"
+    local _currentuser"${2:-'rayiik'}"
+local    _directoryofchoice="${1:-"${PWD}"}"
+USER1="$USER"
+sudo chown ":$USER1" "${_directoryofchoice}"
+sudo find "${_directoryofchoice}" -type d -name . -exec chmod g+s {} +
+sudo find "${_directoryofchoice}" -name . -exec chmod g+w {} +
+unset _directoryochoice
+unset _currentuser
+unset _currentowner
+}
+main "$@"

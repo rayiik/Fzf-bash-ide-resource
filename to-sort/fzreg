@@ -1,0 +1,9 @@
+#!/bin/bash
+search_cmd="${@}"
+_default_cmd='fd -uu -t f'
+_fzfregex () {
+    local search_cmd
+    local _default_cmd
+    fzf --bind="space:reload:${search_cmd:-"$_default_cmd"} | rg -e {q}" --phony
+}
+"$("$search_cmd" .)" _fzfregex
