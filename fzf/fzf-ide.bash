@@ -1,11 +1,20 @@
 #!/bin/bash
 #===============================================================================
 #
-#          FILE: test2.sh
+#          FILE: fzf-ide.bash
 #
-#         USAGE: ./test2.sh
+#         USAGE: CTRL-e			CTRL-h
+#		 ALT-e			ALT-o
 #
-#   DESCRIPTION:
+#   DESCRIPTION: CTRL/Alt+e  This script prints your commands that are located in path as a list where you can 
+# interactivly select a command (with preview taken from man pages during search) and insterts it 
+# directly into the text line using readline. The difference between the two is one searches based off of letters already typed and the other
+# has no predefined search, shows all results, and overwrites the letters already typed.
+
+# Ctrl-h takes the word before cursor and opens man page (or generates a man page from the --help flag *moreman*
+
+# alt-o takes the command before word and produces a list of -- - flags and opens them in fzf (interactive search and select) then takes
+# those flags and adds them to the command line after the searched for command.
 #
 #       OPTIONS: ---
 #  REQUIREMENTS: ---
